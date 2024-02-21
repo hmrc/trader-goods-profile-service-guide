@@ -1,0 +1,1062 @@
+---
+title: API reference
+weight: 50
+---
+
+# API reference
+<p style="color:red">Note: All content in this page are work in progress and are evolving</p>
+
+This section details the APIs exposed in TGP and their specification.
+
+## Authentication and Authorisation
+<B>Authentication</B>
+
+Learn about the user-restricted <a href="/api-documentation/docs/authorisation/user-restricted-endpoints" rel="noopener noreferrer">authentication</a> used by the API.
+
+<B>Authorisation</B>
+
+HMRC supports OAuth 2.0 for authenticating user restricted API requests using an OAuth 2.0 Bearer Token in the AUTHORIZATION header. See <a href ="https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation/user-restricted-endpoints">link</a> for details.
+
+<B>Flow type:</B>
+    authorizationCode
+
+<B>Authorization URL:</B> https://api.service.hmrc.gov.uk/oauth/authorize
+
+<B>Token URL:</B> https://api.service.hmrc.gov.uk/oauth/token
+
+<B>Refresh URL:</B> https://api.service.hmrc.gov.uk/oauth/refresh
+
+<B>Required scopes:</B> TBA
+
+
+
+
+
+
+
+
+## Create TGP Product
+
+   <B>Create TGP Product:</B>
+
+   <I>Helps create a TGP Product.</I>
+
+   <B>Http Endpoint</B>
+
+    /customs/trader-goods-profile
+
+   <B>Http Method</B>
+
+     POST
+
+ <B>HTTP Headers</B>
+
+Requests to create TGP products to the Create TGP Product endpoint need to provide the following header fields:
+
+<table>
+  <tr>
+    <th>SL #</th>
+    <th>HeaderName</th>
+    <th>Header Value</th>
+    <th>Required</th>
+  </tr>
+  <tr>
+      <td>1</td>
+      <td>Authorisation</td>
+      <td>Access token granting access to the TGP</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Content-Type</td>
+      <td>Specifies the format of the request body, which must be JSON. Example: application/json</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Accept</td>
+      <td>Specifies the response format and the version of the API to be used.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Date</td>
+      <td>Specifies the id of any related record already created in system for the product.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>X-Forwarded-Host</td>
+      <td>The name or IP address of the application system that submitted the message i.e. 'TSS'</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>X-Client-ID</td>
+      <td>Identifier of the calling system</td>
+      <td>true</td>
+    </tr>
+</table>
+
+
+
+<B>Request Parameters</B>
+
+The below table describes the request parameters required to be passed in the request for a Create TGP Product api call:
+
+<div class="table-container">
+<table>
+   <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Datatype</th>
+      <th>Required</th>
+   </tr>
+   <tr>
+      <td>trader_eori</td>
+      <td>EORI number of the trader as known to HMRC. In the UK this starts GB or XI followed by 12 numbers. Maximum length of this field is 17 characters.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>actor_id</td>
+      <td>EORI number of the user making the change, which may be the same or different to the trader_eori.Maximum length of this field is 17 characters.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>trader_ref</td>
+      <td>Unique product reference used by the trader to identify the goods. For example a Stock Keeping Unit (SKU) code. If the trader does not provide a trader_ref, the front end should duplicate the goods_description field and pass this as trader_ref. Maximum length of this field is 512 characters.</td>
+      <td>string</td>
+      <td>false</td>
+   </tr>
+   <tr>
+         <td>comcode</td>
+         <td>A code specific to goods that is internationally recognised. Can be 6, 8 or 10 digits.</td>
+         <td>string</td>
+         <td>true</td>
+   </tr>
+   <tr>
+      <td>accreditation_request</td>
+      <td>Optional field but can be set to 'Accreditation requested' to submit a request to the HMRC Classification team who will check whether the provided commodity code is correct. Maximum length of this field is 35 characters.</td>
+      <td>string</td>
+      <td>false</td>
+   </tr>
+   <tr>
+      <td>goods_description</td>
+      <td>Description of the goods using terminology that is familiar to the trader. For example, Bananas or T-Shirts. Is not required to be unique, however this is recommended for ease of trader identification. Maximum length of this field is 512 characters.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>country_of_origin</td>
+      <td>Country where the product came from. This is a char field with 2 letters in it as per ISO 3166 standards. Can also refer to CDS Appendix 13 - https://www.gov.uk/government/publications/country-codes-for-the-customs-declaration-service</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>category</td>
+      <td>To be retrieved using the Online Trade Tariff API. The category of the goods based on applicable restrictions, prohibitions or any exemptions the trader may hold. This is an integer field with value 1, 2, or 3.</td>
+      <td>integer</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>prohibition_restriction_doc_id</td>
+      <td>To be retrieved using the Online Trade Tariff API. Trader should identify which prohibitions are applicable to their business. Maximum length of this field is 17 characters?.</td>
+      <td>string</td>
+      <td>false</td>
+   </tr>
+   <tr>
+      <td>prohibhition_restriction_explanation</td>
+      <td>To be retrieved using the Online Trade Tariff API. Trader should identify which prohibitions are applicable to their business. Maximum length of this field is 17 characters?</td>
+      <td>string</td>
+      <td>false</td>
+   </tr>
+  <tr>
+     <td>supplementary_unit</td>
+     <td>Supplementary units are used to provide quantity of goods. For eg. 13. Optional and should only be used by traders if their quantity is consistent between movements.</td>
+      <td>API Consumer</td>
+        <td>float</td>
+        <td>false</td>
+     </tr>
+     <tr>
+        <td>measurement_unit</td>
+        <td>Measurement units are used when an additional measurement unit is needed on customs declarations. For eg, the quantity of the products as well as the weight in kilograms. This should be retrieved from the OTT API for the given commodity code and may be used to inform the trader of the required units when populating a declaration. Maximum length of this field is 17 characters?</td>
+        <td>string</td>
+        <td>false</td>
+     </tr>
+   <tr>
+        <td>commcode_effective_from_date</td>
+        <td>Date in the (OTT) when authorised usage of a commodity code came into effect. This should be retrieved from the OTT API and use standard ISO8601 format (yyyy-mm-dd hh:mm:ssZ)</td>
+        <td>string(date)</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>commcode_effective_to_date</td>
+        <td>Date in the (OTT) when authorised usage of a commodity code expired or will expire. This should be retrieved from the OTT API and use standard ISO8601 format (yyyy-mm-dd hh:mm:ssZ)</td>
+        <td>string(date)</td>
+        <td>false</td>
+     </tr>
+</table>
+
+<p><strong>Example Request</strong></p>
+   <div class="highlight"><pre class="highlight shell" tabindex="0"><code>  curl <span class="nt">-X</span> POST -H 'Authorisation: dddd' -H 'Trader EORI: GB1234567890' -H 'Requestor EORI: GB1234567890' -H "Content-type: application/json"-d '{"trader_eori": "GB1234567890", "actor_id": "GB0987654321", "trader_ref": "", "comcode": "104101000", "accreditation_request": "Accreditation Requested", "goods_description": "Organic bananas", "country_of_origin": "EC", "category": 1, "prohibition_restriction_doc_id": "999L", "prohibition_restriction_explanation": "CDS Waiver", "supplementary_unit": 500, "mesaurement_unit": "Square metre (m²)", "commcode_effective_from_date" : "2024-11-18T23:20:19Z", "commcode_effective_to_date": "2024-11-18T23:20:19Z"}' 'https://www.trade-goods-profile.service.gov.uk/api/tgp-product/V1'</code></pre></div>
+
+
+<B>Response HTTP Headers</B>
+
+Responses from the Create TGP Product endpoint will provide the following header fields:
+
+<table>
+  <tr>
+    <th>SL #</th>
+    <th>HeaderName</th>
+    <th>Header Value</th>
+    <th>Required</th>
+  </tr>
+    <tr>
+      <td>4</td>
+      <td>X-Correlation-ID</td>
+      <td>Specifies the id of any related record already created in system for the product.</td>
+      <td>true</td>
+    </tr>
+</table>
+
+
+ <B>Response Parameters</B>
+
+ The below table describes the response parameters that would be in the response for a Create TGP Product endpoint call:
+
+ <div class="table-container">
+ <table>
+    <tr>
+       <th>Name</th>
+       <th>Description</th>
+       <th>Datatype</th>
+       <th>Required</th>
+    </tr>
+    <tr>
+       <td>tgp_id</td>
+       <td>Primary key id of the record for the TGP Product in TGP Digital.</td>
+       <td>long</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>trader_eori</td>
+       <td>EORI number of the trader as known to HMRC. In the UK this starts GB or XI followed by 12 numbers. Maximum length of this field is  17 characters.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>actor_id</td>
+       <td>EORI number of the user making the change, which may be the same or different to the trader_eori. Maximum length of this field is 17 characters.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>trader_ref</td>
+       <td>Unique product reference used by the trader to identify the goods. For example a Stock Keeping Unit (SKU) code. If the trader does not provide a trader_ref, the front end should duplicate the goods_description field and pass this as trader_ref. Maximum length of this field is 512 characters.</td>
+       <td>string</td>
+       <td>false</td>
+    </tr>
+    <tr>
+       <td>comcode</td>
+       <td>A code specific to goods that is internationally recognised. Can be 6, 8 or 10 digits.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>accreditation_status</td>
+       <td>Optional field but can be set to 'Accreditation requested' to submit a request to the HMRC Classification team who will check whether the provided commodity code is correct. Maximum length of this field is 35 characters.</td>
+       <td>string</td>
+       <td>false</td>
+    </tr>
+    <tr>
+       <td>goods_description</td>
+       <td>Description of the goods using terminology that is familiar to the trader. For example, Bananas or T-Shirts. Is not required to be unique, however this is recommended for ease of trader identification. Maximum length of this field is 512 characters</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>country_of_origin</td>
+       <td>Country where the product came from. This is a char field with 2 letters in it as per ISO 3166 standards. Can also refer to CDS Appendix 13 - https://www.gov.uk/government/publications/country-codes-for-the-customs-declaration-service.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>category</td>
+       <td>To be retrieved using the Online Trade Tariff API. The category of the goods based on applicable restrictions, prohibitions or any exemptions the trader may hold. This is an integer field with value 1, 2, or 3.</td>
+       <td>integer</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>prohibition_restriction_doc_id</td>
+       <td>To be retrieved using the Online Trade Tariff API. Trader should identify which prohibitions are applicable to their business. Maximum length of this field is 17 characters??</td>
+       <td>string</td>
+       <td>false</td>
+    </tr>
+    <tr>
+       <td>prohibition_restriction_explanation</td>
+       <td>To be retrieved using the Online Trade Tariff API. Trader should identify which prohibitions are applicable to their business. Maximum length of this field is 17 characters??</td>
+       <td>string</td>
+       <td>false</td>
+    </tr>
+   <tr>
+      <td>supplementary_unit</td>
+      <td>Supplementary units are used to provide quantity of goods. For eg. 13. Optional and should only be used by traders if their quantity is consistent between movements.</td>
+      <td>float</td>
+      <td>false</td>
+  </tr>
+  <tr>
+      <td>measurement_unit</td>
+      <td>Measurement units are used when an additional measurement unit is needed on customs declarations. For eg, the quantity of the products as well as the weight in kilograms. This should be retrieved from the OTT API for the given commodity code and may be used to inform the trader of the required units when populating a declaration. Maximum length of this field is 17 characters?</td>
+      <td>string</td>
+      <td>false</td>
+  </tr>
+  <tr>
+      <td>commcode_effective_from_date</td>
+      <td>Date in the (OTT) when authorised usage of a commodity code came into effect. This should be retrieved from the OTT API and use standard ISO8601 format (yyyy-mm-dd hh:mm:ssZ)</td>
+      <td>string(date)</td>
+      <td>true</td>
+  </tr>
+  <tr>
+      <td>commcode_effective_to_date</td>
+      <td>Date in the (OTT) when authorised usage of a commodity code expired or will expire. This should be retrieved from the OTT API and use standard ISO8601 format (yyyy-mm-dd hh:mm:ssZ)</td>
+      <td>string(date)</td>
+      <td>false</td>
+   </tr>
+    <tr>
+       <td>version</td>
+       <td>Version of the TGP Product record in TGP Digital.</td>
+       <td>integer</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>state</td>
+       <td>Status of TGP PRoduct record in TGP Digital. Maximum length of this field is  20 characters.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>declarable</td>
+       <td>Status of TGP Product record for declarations.</td>
+       <td>boolean</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>UKIMS_number</td>
+       <td>UK Internal Market Scheme registration number.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>NIRMS_number</td>
+       <td>Northern Ireland Retail Movement Scheme registration number.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>NIPHL_number</td>
+       <td>Northern Ireland Plant Health Label scheme registration number.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+        <td>last_created_date</td>
+        <td>Timestamp when the record was last created in TGP Digital.</td>
+        <td>string(date)</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>last_updated_date</td>
+        <td>Timestamp when the record was last updated in TGP Digital.</td>
+        <td>string(date)</td>
+        <td>true</td>
+     </tr>
+ </table>
+
+ <p><strong>Example Response</strong></p>
+       <div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+        </span><span class="nl">"tgp_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">9007199254740991</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"trader_eori"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB1234567890"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"actor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB0987654321"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"trader_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAN001001"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"comcode"</span><span class="p">:</span><span class="w"> </span><span class="nl">"104101000"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"accreditation_request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accreditation Requested"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"goods_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Organic bananas"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"country_of_origin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EC",</span><span class="w">
+        <span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">1,</span><span class="w">
+        <span class="nl">"prohibition_restriction_doc_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"999L",</span><span class="w">
+        <span class="nl">"prohibition_restriction_explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CDS Waiver",</span><span class="w">
+        <span class="nl">"supplementary_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">500,</span><span class="w">
+        <span class="nl">"measurement_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Square metre (m²)",</span><span class="w">
+        <span class="nl">"commcode_effective_from_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-18T23:20:19Z",</span><span class="w">
+        <span class="nl">"commcode_effective_to_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-18T23:20:19Z"</span><span class="w"></span>
+        <span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">1</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"declarable"</span><span class="p">:</span><span class="w"> </span><span class="s2">true</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"UKIMS_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XIUKIM47699357400020231115081800"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"NIRMS_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RMS-GB-123456"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"NIPHL_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6 S12345"</span><span class="p">,</span><span class="w">
+        <span class="nl">"last_created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-18T23:20:19Z"</span><span class="p">,</span><span class="w"></span>
+        <span class="nl">"last_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-18T23:20:19Z"</span><span class="p">,</span><span class="w"></span>
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+      <p><strong>Responses</strong></p>
+      <div class="table-container">
+      <table>
+        <tr>
+          <th>Status</th>
+          <th>Meaning</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>201</td>
+          <td>Created</td>
+          <td>TGP Product was successfully created</td>
+        </tr>
+        <tr>
+          <td>400</td>
+          <td>Bad Request</td>
+          <td>Incorrect request parameters provided.</td>
+        </tr>
+        <tr>
+          <td>401</td>
+          <td>Unauthorised</td>
+          <td>Credentials failed</td>
+        </tr>
+        <tr>
+          <td>403</td>
+          <td>Forbidden</td>
+          <td>User was valid, but not allowed to perform this action</td>
+        </tr>
+      </table>
+
+## Update TGP Product
+
+   <B>Update TGP Product:</B>
+
+   <I>Helps Update a TGP Product.</I>
+
+   <B>Http Endpoint</B>
+
+   /customs/trader-goods-profile
+
+<B>Http Method</B>
+
+    PATCH
+
+ <B>Http Headers</B>
+
+Requests to the Update TGP Product endpoint need to provide the following header fields:
+
+<table>
+  <tr>
+    <th>SL #</th>
+    <th>HeaderName</th>
+    <th>Header Value</th>
+    <th>Required</th>
+  </tr>
+
+    <tr>
+      <td>1</td>
+      <td>Authorisation</td>
+      <td>Access token granting access to the TGP</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Content-Type</td>
+      <td>Specifies the format of the request body, which must be JSON. Example: application/json</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Accept</td>
+      <td>Specifies the response format and the version of the API to be used.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Date</td>
+      <td>Specifies the id of any related record already created in system for the product.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>X-Forwarded-Host</td>
+      <td>The name or IP address of the application system that submitted the message i.e. 'TSS'</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>X-Client-ID</td>
+      <td>Identifier of the calling system</td>
+      <td>true</td>
+    </tr>
+</table>
+
+<B>Request Parameters</B>
+
+The below table describes the request parameters required to be passed in the request for a Update TGP Product api call:
+
+<div class="table-container">
+<table>
+   <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Datatype</th>
+      <th>Required</th>
+   </tr>
+   <tr>
+      <td>trader_eori</td>
+      <td>EORI number of the trader as known to HMRC. In the UK this starts GB or XI followed by 12 numbers. Maximum length of this field is  17 characters.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>actor_id</td>
+      <td>EORI number of the user making the change, which may be the same or different to the trader_eori. Maximum length of this field is  17 characters.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>tgp_id</td>
+      <td>Unique identifier of the product record to be updated.</td>
+      <td>integer</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>trader_ref</td>
+      <td>Unique product reference used by the trader to identify the goods. For example a Stock Keeping Unit (SKU) code. If the trader does not provide a trader_ref, the front end should duplicate the goods_description field and pass this as trader_ref. Maximum length of this field is 512 characters</td>
+      <td>string</td>
+      <td>false</td>
+   </tr>
+    <tr>
+         <td>comcode</td>
+         <td>A code specific to goods that is internationally recognised. Can be 6, 8 or 10 digits.</td>
+         <td>string</td>
+         <td>true</td>
+  </tr>
+   <tr>
+      <td>accreditation_status</td>
+      <td>Default state of 'Null' but can be set to 'Accreditation requested' to submit a request to the HMRC Classification team who will check whether the provided commodity code is correct. Maximum length of this field is 35 characters.</td>
+      <td>string</td>
+      <td>false</td>
+   </tr>
+   <tr>
+     <td>accreditation_withdrawal_reason</td>
+     <td>To be provided when accreditation_status has been set to "Null" from "Accreditation requested" which withdraws the accreditation request. Maximum length of this field is 512 characters.</td>
+     <td>string</td>
+     <td>false</td>
+   </tr>
+   <tr>
+      <td>goods_description</td>
+      <td>Description of the goods using terminology that is familiar to the trader. For example, Bananas or T-Shirts. Is not required to be unique, however this is recommended for ease of trader identification. Maximum length of this field is 512 characters.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>country_of_origin</td>
+      <td>Country where the product came from. This is a char field with 2 letters in it as per ISO 3166 standards. Can also refer to CDS Appendix 13 - https://www.gov.uk/government/publications/country-codes-for-the-customs-declaration-service</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>category</td>
+      <td>To be retrieved using the Online Trade Tariff API. The category of the goods based on applicable restrictions, prohibitions or any exemptions the trader may hold. This is an integer field with value 1, 2, or 3.</td>
+      <td>integer</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>prohibition_restriction_doc_id</td>
+      <td>To be retrieved using the Online Trade Tariff API. Trader should identify which prohibitions are applicable to their business. Maximum length of this field is 17 characters?</td>
+      <td>string</td>
+      <td>false</td>
+   </tr>
+   <tr>
+      <td>prohibition_restriction_explanation</td>
+      <td>To be retrieved using the Online Trade Tariff API. Trader should identify which prohibitions are applicable to their business. Maximum length of this field is 17 characters?</td>
+      <td>string</td>
+      <td>false</td>
+   </tr>
+   <tr>
+       <td>supplementary_unit</td>
+       <td>Supplementary units are used to provide quantity of goods. For eg. 13. Optional and should only be used by traders if their quantity is consistent between movements.</td>
+       <td>float</td>
+       <td>false</td>
+   </tr>
+      <tr>
+         <td>measurement_unit</td>
+         <td>Measurement units are used when an additional measurement unit is needed on customs declarations. For eg, the quantity of the products as well as the weight in kilograms. This should be retrieved from the OTT API for the given commodity code and may be used to inform the trader of the required units when populating a declaration. Maximum length of this field is 17 characters?</td>
+         <td>string</td>
+         <td>false</td>
+      </tr>
+   <tr>
+      <td>commcode_effective_from_date</td>
+      <td>Date in the (OTT) when authorised usage of a commodity code expired or will expire. This should be retrieved from the OTT API and use standard ISO8601 format (yyyy-mm-dd hh:mm:ssZ)</td>
+      <td>string(date)</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>commcode_effective_to_date</td>
+      <td>Date in the (OTT) when authorised usage of a commodity code expired or will expire. This should be retrieved from the OTT API and use standard ISO8601 format (yyyy-mm-dd hh:mm:ssZ)</td>
+      <td>string(date)</td>
+      <td>false</td>
+   </tr>
+</table>
+
+<p><strong>Example Request</strong></p>
+   <div class="highlight"><pre class="highlight shell" tabindex="0"><code>  curl <span class="nt">-X</span> PATCH -H 'Authorisation: dddd' -H 'Trader EORI: GB1234567890' -H 'actor_id: GB1234567890' -H 'id: 9007199254740991' -H "Content-type: application/json" -d '{"trader_eori": "GB1234567890", "actor_id": "GB0987654321", "id": 9007199254740991, "comcode":0803901100, "trader_ref":"BAN001001","accreditation_request": "Accreditation Requested", "accreditation_withdrawal_reason": "Advice received by webchat, no longer needed", "goods_description":"", "country_of_origin":"EC", "category": 1,  "prohibition_restriction_doc_id": "999L", "prohibition_restriction_explanation": "CDS Waiver", "supplementary_unit": 500, "measurement_unit": "Square metre (m²)"}, "commcode_effective_to_date": "2024-11-18T23:20:19Z", "commcode_effective_from_date" :"2024-11-18T23:20:19Z"' 'https://www.trade-goods-profile.service.gov.uk/api/tgp-product/V1'</code></pre></div>
+
+<B>Response HTTP Headers</B>
+
+Responses from the Update TGP Product endpoint will provide the following header fields:
+
+<table>
+  <tr>
+    <th>SL #</th>
+    <th>HeaderName</th>
+    <th>Header Value</th>
+    <th>Required</th>
+  </tr>
+    <tr>
+      <td>4</td>
+      <td>X-Correlation-ID</td>
+      <td>Specifies the id of any related record already created in system for the product.</td>
+      <td>true</td>
+    </tr>
+</table>
+
+ <B>Response Parameters</B>
+
+ The below table describes the response parameters that would be in the response for a Update TGP Product api call:
+
+ <div class="table-container">
+ <table>
+    <tr>
+       <th>Name</th>
+       <th>Description</th>
+       <th>Datatype</th>
+       <th>Required</th>
+    </tr>
+    <tr>
+       <td>trader_eori</td>
+       <td>EORI number of the trader as known to HMRC. In the UK this starts GB or XI followed by 12 numbers. Maximum length of this field is 17 characters.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>actor_id</td>
+       <td>EORI number of the user making the change, which may be the same or different to the trader_eori. Maximum length of this field is 17 characters.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>tgp_id</td>
+       <td>Unique identifier of the product record to be updated.</td>
+       <td>integer</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>trader_ref</td>
+       <td>Unique product reference used by the trader to identify the goods. For example a Stock Keeping Unit (SKU) code. If the trader does not provide a trader_ref, the front end should duplicate the goods_description field and pass this as trader_ref. Maximum length of this field is 512 characters.</td>
+       <td>string</td>
+       <td>false</td>
+    </tr>
+     <tr>
+        <td>comcode</td>
+        <td>A code specific to goods that is internationally recognised. Can be 6, 8 or 10 digits.</td>
+        <td>string</td>
+        <td>true</td>
+   </tr>
+    <tr>
+       <td>accreditation_request</td>
+       <td>Optional field but can be set to 'Accreditation requested' to submit a request to the HMRC Classification team who will check whether the provided commodity code is correct. If the current status is "accreditation requested" then "accreditation withdrawn" can be provided along with a withdrawal_reason to cancel the accreditation request. Maximum length of this field is 35 characters</td>
+       <td>string</td>
+       <td>false</td>
+    </tr>
+    <tr>
+      <td>accreditation_withdrawal_reason</td>
+      <td>To be provided when accreditation_status has been set to "Null" from "Accreditation requested" which withdraws the accreditation request. Maximum length of this field is 512 characters</td>
+      <td>string</td>
+      <td>false</td>
+    </tr>
+    <tr>
+       <td>goods_description</td>
+       <td>Description of the goods using terminology that is familiar to the trader. For example, Bananas or T-Shirts. Is not required to be unique, however this is recommended for ease of trader identification. Maximum length of this field is 512 characters.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>country_of_origin</td>
+       <td>Country where the product came from. This is a char field with 2 letters in it as per ISO 3166 standards. Can also refer to CDS Appendix 13 - https://www.gov.uk/government/publications/country-codes-for-the-customs-declaration-service</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>category</td>
+       <td>To be retrieved using the Online Trade Tariff API. The category of the goods based on applicable restrictions, prohibitions or any exemptions the trader may hold. This is an integer field with value 1, 2, or 3.</td>
+       <td>integer</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>prohibition_restriction_doc_id</td>
+       <td>To be retrieved using the Online Trade Tariff API. Trader should identify which prohibitions are applicable to their business. Maximum length of this field is 17 characters?</td>
+       <td>string</td>
+       <td>false</td>
+    </tr>
+    <tr>
+       <td>prohibition_restriction_explanation</td>
+       <td>To be retrieved using the Online Trade Tariff API. Trader should identify which prohibitions are applicable to their business. Maximum length of this field is 17 characters?</td>
+       <td>string</td>
+       <td>false</td>
+    </tr>
+    <tr>
+       <td>supplementary_unit</td>
+       <td>Supplementary units are used to provide quantity of goods. For eg. 13. Optional and should only be used by traders if their quantity is consistent between movements.</td>
+       <td>float</td>
+       <td>false</td>
+    </tr>
+    <tr>
+       <td>measurement_unit</td>
+       <td>Measurement units are used when an additional measurement unit is needed on customs declarations. For eg, the quantity of the products as well as the weight in kilograms. This should be retrieved from the OTT API for the given commodity code and may be used to inform the trader of the required units when populating a declaration. Maximum length of this field is 17 characters?</td>
+       <td>string</td>
+       <td>false</td>
+       </tr>
+    <tr>
+       <td>commcode_effective_from_date</td>
+       <td>Date in the (OTT) when authorised usage of a commodity code came into effect. This should be retrieved from the OTT API and use standard ISO8601 format (yyyy-mm-dd hh:mm:ssZ)</td>
+       <td>string(date)</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>commcode_effective_to_date</td>
+       <td>Date in the (OTT) when authorised usage of a commodity code expired or will expire. This should be retrieved from the OTT API and use standard ISO8601 format (yyyy-mm-dd hh:mm:ssZ)</td>
+       <td>string(date)</td>
+       <td>false</td>
+    </tr>
+    <tr>
+       <td>version</td>
+       <td>Version of the TGP Product record in TGP Digital.</td>
+       <td>integer</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>state</td>
+       <td>Status of TGP PRoduct record in TGP Digital. Maximum length of this field is 20 characters.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>declarable</td>
+       <td>Status of TGP Product record for declarations.</td>
+       <td>boolean</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>UKIMS_number</td>
+       <td>UK Internal Market Scheme registration number.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>NIRMS_number</td>
+       <td>Northern Ireland Retail Movement Scheme registration number.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+       <td>NIPHL_number</td>
+       <td>Northern Ireland Plant Health Label scheme registration number.</td>
+       <td>string</td>
+       <td>true</td>
+    </tr>
+    <tr>
+        <td>last_created_date</td>
+        <td>Timestamp when the record was last created in TGP Digital.</td>
+        <td>string(date)</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>last_updated_date</td>
+        <td>Timestamp when the record was last updated in TGP Digital.</td>
+        <td>string(date)</td>
+        <td>true</td>
+     </tr>
+ </table>
+
+ <p><strong>Example Response</strong></p>
+ <div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+         <span class="nl">"trader_eori"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB1234567890"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"actor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB0987654321"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"comcode"</span><span class="p">:</span><span class="w"> </span><span class="nl">"104101000"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"trader_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAN001001"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"accreditation_request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accreditation Requested"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"accreditation_withdrawal_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Advice received by webchat, no longer needed"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"goods_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Organic bananas"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"country_of_origin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EC",</span><span class="w">
+         <span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">1,</span><span class="w">
+         <span class="nl">"prohibition_restriction_doc_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"999L",</span><span class="w">
+         <span class="nl">"prohibition_restriction_explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CDS Waiver",</span><span class="w">
+         <span class="nl">"supplementary_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">500,</span>
+         <span class="nl">"measurement_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Square metre (m²)",</span><span class="w">
+         <span class="nl">"commcode_effective_from_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-09-27 18:00:00.000",</span><span class="w">
+         <span class="nl">"commcode_effective_to_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-09-27 18:00:00.000"</span><span class="w">
+         </span><span class="nl">"tgp_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">9007199254740991</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">1</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"declarable"</span><span class="p">:</span><span class="w"> </span><span class="s2">true</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"ukims_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XIUKIM47699357400020231115081800"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"nphlms_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RMS-GB-123456"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"nirms_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6 S12345"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"last_created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-18T23:20:19Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"last_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-18T23:20:19Z"</span><span class="p">,</span><span class="w">
+ <span class="p">}</span><span class="w">
+ </span></code></pre></div>
+      <p><strong>Responses</strong></p>
+      <div class="table-container">
+      <table>
+              <tr>
+                <th>Status</th>
+                <th>Meaning</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>OK</td>
+                <td>Request completed successfully</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Bad Request</td>
+                <td>Incorrect request parameters provided.</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Unauthorised</td>
+                <td>Credentials failed</td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Forbidden</td>
+                <td>User was valid, but not allowed to perform this action</td>
+              </tr>
+            </table>
+
+
+## Deactivate TGP Product
+
+   <B>Deactivate TGP Product:</B>
+
+   <I>Helps Deactivate a TGP Product.</I>
+
+   <B>Http Endpoint</B>
+
+   /customs/trader-goods-profile
+
+ <B>Http Method</B>
+
+    DELETE
+
+ <B>Http Headers</B>
+
+Requests to the Deactivate TGP Product endpoint need to provide the following header fields:
+
+<table>
+  <tr>
+    <th>SL #</th>
+    <th>HeaderName</th>
+    <th>Header Value</th>
+    <th>Required</th>
+  </tr>
+  <tr>
+        <td>1</td>
+        <td>Authorisation</td>
+        <td>Access token granting access to the TGP</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Content-Type</td>
+        <td>Specifies the format of the request body, which must be JSON. Example: application/json</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Accept</td>
+        <td>Specifies the response format and the version of the API to be used.</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Date</td>
+        <td>Specifies the id of any related record already created in system for the product.</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>X-Forwarded-Host</td>
+        <td>The name or IP address of the application system that submitted the message i.e. 'TSS'</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>X-Client-ID</td>
+        <td>Identifier of the calling system</td>
+        <td>true</td>
+      </tr>
+</table>
+
+<B>Request Parameters</B>
+
+The below table describes the request parameters required to be passed in the request for a Deactivate TGP Product api call:
+
+<div class="table-container">
+<table>
+   <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Datatype</th>
+      <th>Required</th>
+   </tr>
+   <tr>
+      <td>trader_eori</td>
+      <td>Identity of the trader as known to HMRC. In the UK this is the 12-character EORI number. Maximum length of this field is 17 chars.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>actor_id</td>
+      <td>EORI number of the user making the change, which may be different to the trader. Maximum length of this field is 17 chars.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>id</td>
+      <td>Unique identifier of the product record to be updated.</td>
+      <td>integer</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>state</td>
+      <td>Default state of 'Active' is used to indicate that the goods item is in use. Can be set to 'Inactive' to delete or archive the item.</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+</table>
+
+<p><strong>Example Request</strong></p>
+   <div class="highlight"><pre class="highlight shell" tabindex="0"><code>  curl <span class="nt">-X</span> DELETE -H 'Authorisation: dddd' -H 'Trader EORI: GB1234567890' -H 'actor_id: GB1234567890' -H 'id: 9007199254740991' -H "Content-type: application/json" -d '{"trader_eori": "GB1234567890", "actor_id": "GB0987654321", "id": 9007199254740991, "state": "Inactive"}' 'https://www.trade-goods-profile.service.gov.uk/api/tgp-product/V1'</code></pre></div>
+
+<B>Response HTTP Headers</B>
+
+Responses from the Deactivate TGP Product endpoint will provide the following header fields:
+
+<table>
+  <tr>
+    <th>SL #</th>
+    <th>HeaderName</th>
+    <th>Header Value</th>
+    <th>Required</th>
+  </tr>
+    <tr>
+      <td>4</td>
+      <td>X-Correlation-ID</td>
+      <td>Specifies the id of any related record already created in system for the product.</td>
+      <td>true</td>
+    </tr>
+</table>
+
+<B>Request Parameters</B>
+
+The below table describes the request parameters required to be passed in the request for a Deactivate TGP Product API call:
+
+<div class="table-container">
+<table>
+   <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Datatype</th>
+      <th>Required</th>
+   </tr>
+    <tr>
+      <td>id</td>
+      <td>Unique identifier of the product record that was updated.</td>
+      <td>integer</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>status</td>
+      <td>Status of the deactivate request in TGP Digital</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+   <tr>
+      <td>message</td>
+      <td>Confirmation message on the deactivation for the completion of the request</td>
+      <td>string</td>
+      <td>true</td>
+   </tr>
+</table>
+
+ <p><strong>Example Response</strong></p>
+      <div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span>
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TGP Product successfully deactivated"</span>
+<span class="p">}</span></code></pre></div>
+      <p><strong>Responses</strong></p>
+      <div class="table-container">
+<table>
+              <tr>
+                <th>Status</th>
+                <th>Meaning</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>200</td>
+                <td>OK</td>
+                <td>Request completed successfully</td>
+              </tr>
+              <tr>
+                <td>400</td>
+                <td>Bad Request</td>
+                <td>Incorrect request parameters provided.</td>
+              </tr>
+              <tr>
+                <td>401</td>
+                <td>Unauthorised</td>
+                <td>Credentials failed</td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Forbidden</td>
+                <td>User was valid, but not allowed to perform this action</td>
+              </tr>
+            </table>
+
+
+
+## Create TGP Profile
+
+   <B>Create TGP Profile:</B>
+
+   <I>Helps create a TGP profile.</I>
+
+   <B>Http Endpoint</B>
+
+   "/tgpProfile"
+
+   <B>Http Method</B>
+
+    POST
+## Read & list trader TGP Data
+<B>Read & list trader TGP Data:</B>
+
+<B>Http Endpoint</B>
+
+  /customs/trader-goods-profile
+
+   <B>Http Method</B>
+
+    GET
