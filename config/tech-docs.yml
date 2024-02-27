@@ -2,7 +2,7 @@
 service_name: Trader Goods Profile Service
 
 # The route that will be used to access this site (with tailing slash)
-service_link: /guides/trader-goods-profile/
+service_link: /guides/trader-goods-profile-service-guide/
 
 # ================================================
 # You shouldn't need to edit anything below here
