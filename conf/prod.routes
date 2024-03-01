@@ -1,4 +1,4 @@
 ->      /                                                  health.Routes
-GET     /guides/trader-goods-profile           controllers.Default.redirect(to = "/guides/example-service-guide/")
+GET     /guides/trader-goods-profile           controllers.Default.redirect(to = "/guides/trader-goods-profile-service-guide/")
 GET     /guides/trader-goods-profile/          controllers.Assets.at(path="/public", file="index.html")
 GET     /guides/trader-goods-profile/*file     controllers.Assets.at(path="/public", file)
