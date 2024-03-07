@@ -1,5 +1,6 @@
 
 # Trader Goods Profile Service Guide
+This is the service guide for the Trader Goods Profile(TGP) service and details the steps to get started and the API specs for the externally referenced APIs for TGP.
 
 ## Running the Scala Application
 
