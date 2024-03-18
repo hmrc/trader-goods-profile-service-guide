@@ -1,31 +1,24 @@
 ---
-title: About the Trader Goods Profile APIs
+title: Trader Goods Profile (TGP) Service API overview
 weight: 10
 ---
-#Trader Goods Profile Service
+#Trader Goods Profile (TGP) Service API overview
 
-<B>Service Overview</B>
+Trader Goods Profile (TGP) supports UK Internal Market Scheme (UKIMS) registered traders moving goods from Great Britain to Northern Ireland that are not-at-risk of moving into the European Union.
 
-Gov.uk
-The Windsor Framework agreement puts in place a full set of new arrangements, through a new UK internal market scheme (UKIMS) for internal trade that enables traders to self-assess their goods’ destination as At Risk (AR) or Not-At-Risk (NAR).
+TGP is accessible to traders and authorised intermediaries through an API. TGP will store goods information allowing traders or intermediaries to use the information to create declarations.
 
-This new Trader Goods Profile(TGP) service will simplify the process for authorised UKIMS traders moving goods from GB-NI which are NAR of moving into the EU and would be accessible to traders (and other’s whom they grant access) via an API containing a simple description of the goods traders move from GB to NI and the respective commodity codes.
+<B>TGP API overview</B>
 
-<B>TGP APIs - Overview:</B>
+The TGP APl uses REST principles with endpoints. The endpoints return data in JSON format and uses standard HTTP error response codes.
 
-The TGP APIs are based on REST principles with endpoints that return data in JSON format and it uses standard HTTP error response codes.
+Your users can use the TGP APIs to:
 
-Use the TGP Product APIs to:
+- create a TGP record
+- update a TGP record
+- update trader details
+- remove a TGP record
+- get TGP records
 
-- request to create a TGP product.
-- request to update a TGP product.
-- request to deactivate a TGP product.
-- enable traders to read & list trader TGP Data
-- request to create a TGP profile
 
-<B>Base URL:</B>
-
-All requests to this API should be prefixed with the following URL:
-
-    https://www.trader-goods-profile.service.gov.uk/api/v(?)
 
