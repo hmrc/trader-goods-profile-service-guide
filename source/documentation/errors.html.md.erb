@@ -1,11 +1,13 @@
 ---
-title: Error Handling
+title: Errors
 weight: 30
 ---
 
-#Error Handling
+# Errors
 
-<p style="color:red">Note: All content in this page are work in progress and are evolving</p>
+<div class="govuk-inset-text">
+This API is in Alpha and may have breaking changes.
+</div>
 
 TGP APIs use standard HTTP status codes to show whether an API request succeeded or not.
 
@@ -13,8 +15,8 @@ They are usually in the range:
 
 <table>
   <tr>
-    <th>SL #</th>
-    <th>Code Range</th>
+    <th>SL &num;</th>
+    <th>Range</th>
     <th>Scenario</th>
   </tr>
   <tr>
@@ -36,31 +38,35 @@ They are usually in the range:
 
 Errors specific to each API are shown in the Endpoints section, under Response. See our reference guide for more on errors.
 
-##Sample Error Structures
+## Sample error structures
 
 All errors from TGP Digital will return a JSON map with two keys: "code" and "message".
 
-<p><strong>Example Error Responses</strong></p>
-<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
-        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">400</span><span class="p">,</span><span class="w"></span>
-        <span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad Request, incorrect input provided in request."</span>
-<span class="p">}</span><span class="w">
-</span></code></pre></div>
+### Example error responses
+```json
+{
+  "code": 400,
+  "message": "Bad Request, incorrect input provided in request."
+}
+```
 
-<p><strong>Example Error Responses with path to json invalid field.</strong></p>
-<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
-        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">400</span><span class="p">,</span><span class="w"></span>
-        <span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad Request, incorrect input provided in request."</span>
-        <span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"//xPathTo/invalidField"</span>
-<span class="p">}</span><span class="w">
-</span></code></pre></div>
+### Example error responses with path to json invalid field
+```json
+{
+  "code": 400,
+  "message": "Bad Request, incorrect input provided in request.",
+  "path": "//xPathTo/invalidField"
+}
+```
 
-<p><strong>Example Error Responses with multiple errors.</strong></p>
-<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
-        </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[ </span><span class="p">,</span><span class="w"></span>
-            </span><span class="nl">{</span>
-               <span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"400"</span>
-               <span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad Request, incorrect input provided in request."</span>
-            <span class="p">}</span><span class="w">
-        <span class="p">]</span><span class="w">
-<span class="p">}</span><span class="w">
+### Example error responses with multiple errors
+```json
+{
+  "errors": [
+    {
+      "code": "400",
+      "message": "Bad Request, incorrect input provided in request."
+    }
+  ]
+}
+```
