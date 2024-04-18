@@ -1,0 +1,81 @@
+---
+title: User journeys
+weight: 40
+---
+
+# User journeys
+
+<div class="govuk-inset-text">
+This API is in Alpha and may have breaking changes.
+</div>
+
+## Creating a TGP record
+
+### Adding a goods record to Trader Goods Profile
+
+Traders can use your software to add new goods records to their Trader Goods Profile using the
+[Create a goods record](https://developer.qa.tax.service.gov.uk/api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page#tag/Goods-records/operation/createTraderGoodsProfileRecord)
+endpoint.
+
+A suggested user journey is proposed below:
+
+1. The trader provides a goods description and trader reference for their goods record. The description does not need
+to match the terminology used on the Trade Tariff – it’s intended to reflect the terminology used within the trader’s
+ business. The trader reference must uniquely identify these goods for that trader - something like a stock keeping
+ unit (SKU) is recommended.
+
+2. The trader must provide a commodity code of at least six digits. If the commodity is later found to be a
+restricted good (Category 2), the commodity code will need to be provided to 8 digits.
+
+3. The provided commodity code can be validated using the Trade Tariff
+[commodities API](https://api.trade-tariff.service.gov.uk/the-commodities-api.html). At this point your software can
+also retrieve the date that the commodity code is valid from and valid to (if applicable). You should also retrieve a
+[measurement unit](https://api.trade-tariff.service.gov.uk/the-commodities-api.html#units-and-measure-components)
+if populated for the commodity.
+
+4. The trader must provide the country of origin for the goods. Optionally, they can also provide a proposed movement
+date for the goods. If they do not provide this, you should consider the date of the trade to be today’s date when
+interacting with the [Trade Tariff Categorisation API](https://api.trade-tariff.service.gov.uk/green-lanes.html).
+
+5. Use the Trade Tariff Categorisation API to retrieve any “category assessments” that may be applicable to the
+trader’s goods movement.
+
+    *Note: Under the Windsor Framework, reduced data requirements have been agreed for the majority of goods movements using the Simplified Process for Internal Market Movements (SPIMM).*
+
+    *Certain types of goods are excluded and may not not be suitable for movement using SPIMM. These goods are referred to as Category 1 goods.*
+
+    *Other goods may be controlled and require additional commodity code detail to use the SPIMM. These goods are referred to as Category 2 goods.*
+
+    *Any goods not classed as Category 1 or Category 2 are referred to as Standard goods and can benefit from SPIMM with the reduced data requirements. In the TGP data model, standard goods are referred to as Category 3.*
+
+6. Category assessments are used to determine whether a trader can meet certain conditions to lower the category of a
+goods movement.
+
+7. For each assessment that the trader is able to exempt, you should store details of the assessment as retrieved
+from the categorisation API.
+
+    a. For each assessment you should store the assessment id, the primary category of that assessment and details of the condition the trader was able to meet.
+
+    b. The condition data should include the type of condition/exemption, the ID/code of the condition, the condition description and if required by the CDS guidance, a free text statement from the trader.
+
+8. If the trader is not able to exempt a category assessment, you should store details of this assessment, but the condition data should not be populated.
+
+9. Category assessments should be shown to traders in order of most restrictive first. This is because the most restrictive assessments will apply if the trader cannot exempt any assessment.
+
+    a. For example, if a trader is shown category assessments which are for category 1 and 2, it doesn’t matter if the trader can exempt all category 2 assessments if they can’t exempt a category 1 assessment. In that scenario, the trade would be Category 1.
+
+    b. If a trader cannot exempt an assessment, it’s recommended that you don’t show any remaining assessments to the user. This is because the outcome of those assessments will not impact the category of the trade.
+
+10. When the trader has been shown all the applicable category assessments, an overall category for the trade can be
+determined. If the trader was able to exempt all assessments, then the trade is likely to be of standard goods
+(referred to as category 3 in the TGP data model). If the trader was not able to exempt all assessments, then the
+Category will be 1 or 2 (depending on the trade).
+
+    More information on the categorisation process is available on the [Trade Tariff Categorisation API pages](https://api.trade-tariff.service.gov.uk/green-lanes.html#windsor-framework-green-lanes-categorisation-api).
+
+11. If the Trade Tariff commodities API returned a measurement unit for the provided commodity code, the trader can optionally populate a supplementary unit quantity for their goods record. This would be recommended if the quantity rarely changes for their goods movements.
+
+12. Once all of this information has been captured, your software can use the Create a goods record endpoint to add
+the record to the trader’s TGP.
+
+    Refer to the [API specification](https://developer.qa.tax.service.gov.uk/api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page) for more information on this endpoint.
