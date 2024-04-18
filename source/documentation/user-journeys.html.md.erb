@@ -21,10 +21,10 @@ A suggested user journey is proposed below:
 
 1. The trader provides a goods description and trader reference for their goods record. The description does not need
 to match the terminology used on the Trade Tariff – it’s intended to reflect the terminology used within the trader’s
- business. The trader reference should uniquely identify these goods for that trader - something like a stock keeping
+ business. The trader reference must uniquely identify these goods for that trader - something like a stock keeping
  unit (SKU) is recommended.
 
-2. The trader should provide a commodity code of at least six digits. If the commodity is later found to be a
+2. The trader must provide a commodity code of at least six digits. If the commodity is later found to be a
 restricted good (Category 2), the commodity code will need to be provided to 8 digits.
 
 3. The provided commodity code can be validated using the Trade Tariff
@@ -33,7 +33,7 @@ also retrieve the date that the commodity code is valid from and valid to (if ap
 [measurement unit](https://api.trade-tariff.service.gov.uk/the-commodities-api.html#units-and-measure-components)
 if populated for the commodity.
 
-4. The trader should provide the country of origin for the goods. Optionally, they can also provide a proposed movement
+4. The trader must provide the country of origin for the goods. Optionally, they can also provide a proposed movement
 date for the goods. If they do not provide this, you should consider the date of the trade to be today’s date when
 interacting with the [Trade Tariff Categorisation API](https://api.trade-tariff.service.gov.uk/green-lanes.html).
 
