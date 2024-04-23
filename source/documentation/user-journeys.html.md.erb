@@ -9,35 +9,35 @@ weight: 40
 This API is in Alpha and may have breaking changes.
 </div>
 
-## Creating a TGP record
+## Create TGP record
 
 Traders can use your software to add new goods records to their Trader Goods Profile using the [Create a goods record](https://developer.qa.tax.service.gov.uk/api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page#tag/Goods-records/operation/createTraderGoodsProfileRecord) endpoint.
 
 This will show an example journey for a user adding a goods record to their TGP.
 
-## 1\. Goods descriptions
+### 1\. Goods descriptions
 
 The trader will provide a goods description. The goods description can be a term that is familiar to the trader.
 
 The trader can then enter a trader reference. This must be unique to the trader’s TGP. For example, a stock keeping unit (SKU).
 
-## 2\. Commodity code
+### 2\. Commodity code
 
 The trader will then provide a commodity code. This can be six digits for some goods. If the goods are category 1 or 2, the commodity code may need to be 8 or 10 digits.
 
 The commodity code can be validated using the [Trade tariff commodities API](https://api.trade-tariff.service.gov.uk/the-commodities-api.html). Your software can also retrieve the date the commodity code is valid from, and to. You should also retrieve a [measurement unit](https://api.trade-tariff.service.gov.uk/the-commodities-api.html#units-and-measure-components) if required for the commodity.
 
-## 3\. Country of origin
+### 3\. Country of origin
 
 The trader will provide the country of origin of the goods. They can also provide an optional movement date for the goods.
 
 If the trader does not provide a movement date, you should consider this to be today’s date for the [Trade Tariff Categorisation API](https://api.trade-tariff.service.gov.uk/the-commodities-api.html).
 
-## 4\. Categorisation
+### 4\. Categorisation
 
 Use the Trade Tariff Categorisation API to retrieve any 'category assessments' that may be applicable to the trader’s goods.
 
-### Windsor Framework
+#### Windsor Framework
 
 Under the Windsor Framework, reduced data requirements have been agreed for the majority of goods movements using the Simplified Process for Internal Market Movements (SPIMM).
 
@@ -45,11 +45,11 @@ Certain types of goods are excluded and may not be suitable for movement using S
 
 Other goods may be controlled and require additional commodity code detail to use the SPIMM. These goods are referred to as Category 2 goods.
 
-### SPIMM
+#### SPIMM
 
 Any goods not classed as category 1 or 2 are standard goods. Standard goods can benefit from SPIMM with the reduced data requirements. The TGP data model calls standard goods 'category 3'.
 
-### Categorisation result
+#### Categorisation result
 
 When the trader has been shown all the applicable category assessments, a category for the trade can be determined.
 
@@ -57,12 +57,51 @@ If the trader was able to exempt all assessments, then the trade is likely to be
 
 You can find out more information about categorisation on the [Trade Tariff Categorisation API pages](https://api.trade-tariff.service.gov.uk/green-lanes.html).
 
-## 5\. Measurement unit
+### 5\. Measurement unit
 
 The Trade Tariff commodities API may return a measurement unit for the provided commodity code. The trader can populate a supplementary unit quantity for their goods record. Traders will benefit from this if the quantity rarely changes on their movements.
 
-## 6\. Creating a goods record
+### 6\. Creating a goods record
 
 Once the trader enters this information, your software can use the 'Create a goods record' endpoint to add the record to the trader’s TGP.
 
 Refer to the [API specification](https://developer.qa.tax.service.gov.uk/api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page) for more information on this endpoint.
+
+## Update TGP record
+
+The ‘Update TGP records’ endpoint allows users of your software to update their existing goods records.
+
+When a trader updates a piece of information, your software will need to return a full record with the new information. We will check all the fields are in the correct format on an update and change the record.
+
+### Locked state
+
+Some records may be in a locked state. This could be because the trader has asked HMRC for an opinion if their goods record is correct.
+
+Once HMRC have reviewed the record, it will be unlocked. Your software will be able to identify if a record is locked.
+
+## Get TGP records
+
+The 'Get TGP records' endpoint allows you to retrieve a list of a trader’s goods records for you to store or manipulate in your application.
+
+The 'Get TGP records' endpoint allows three query types.
+
+### Example uses
+
+#### Get all records
+
+On a trader’s first use of TGP in your application, you can get all the trader’s records and store them locally.
+
+You can get all records again to keep the local copy up to date. For example, when the user logs in to the application or as a daily update.
+
+#### Get updated records
+
+It may be useful to trader to use the updated since query. This will update the local copy when performing certain activities like:
+
+* querying records
+* creating a H8 declaration
+
+#### Get a single goods record
+
+It may be useful to use the 'Get a single goods record' query to check you have the latest version when a user updates a record.
+
+You need the record ID to be able to search for a single record.
