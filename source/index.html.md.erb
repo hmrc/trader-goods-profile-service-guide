@@ -6,25 +6,16 @@ weight: 10
 # Trader Goods Profile (TGP) Service API overview
 
 <div class="govuk-inset-text">
-This API is in Alpha and may have breaking changes.
+This API is in Alpha and may have breaking changes. As the API is in development, future updates for additional endpoints and a testing environment will be published by the end of May.
 </div>
 
-Trader Goods Profile (TGP) supports UK Internal Market Scheme (UKIMS) registered traders moving goods from Great
-Britain to Northern Ireland that are not-at-risk of moving into the European Union.
+Trader Goods Profile (TGP) supports UK Internal Market Scheme (UKIMS) registered traders moving goods from Great Britain to Northern Ireland that are not-at-risk of moving into the European Union.
 
-TGP is accessible to traders and authorised intermediaries through an API. TGP will store goods information allowing
-traders or intermediaries to use the information to create declarations.
+TGP is accessible to traders and authorised intermediaries through an API. TGP will store goods information allowing traders or intermediaries to use the information to create H8 declarations.
 
-TGP will store information about goods being moved between Great Britain and Northern Ireland and can be queried via
-the TGP API to help populate the H8 dataset on an Internal Market Movement Information form.
+TGP will store information about goods moving from Great Britain to Northern Ireland. TGP can be queried via the API to help populate the H8 dataset on an Internal Market Movement Information (IMMI) form.
 
-The TGP API should be used alongside the Trade Tariff
-[commodities API](https://api.trade-tariff.service.gov.uk/the-commodities-api.html) and
-[categorisation API](https://api.trade-tariff.service.gov.uk/green-lanes.html) to retrieve
-and store information that is relevant to the goods movement.
-
-The TGP API is in development and specifications for additional endpoints will be published in the coming weeks.
-A test environment will also be made available in the near future.
+The TGP API must use the Trade Tariff [commodities API][comm-api] and [categorisation API][cat-api] to retrieve and store information relevant to a goods movement.
 
 ## TGP API overview
 
@@ -36,3 +27,6 @@ Your users can use the TGP APIs to:
 - update a TGP record
 - remove a TGP record
 - get TGP records
+
+[comm-api]: https://api.trade-tariff.service.gov.uk/the-commodities-api.html
+[cat-api]: https://api.trade-tariff.service.gov.uk/green-lanes.html

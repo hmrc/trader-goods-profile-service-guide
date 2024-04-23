@@ -75,172 +75,172 @@ All errors from TGP Digital will return a JSON map with two keys: "code" and "me
 }
 ```
 
-## List of possible Bad Request error codes
+## List of possible 400 Bad Request error codes
 
 <table>
   <tr>
     <th>Error Code</th>
     <th>Field Name</th>
-    <th>Status Code</th>
+    <th>Description</th>
   </tr>
   <tr>
     <td>000</td>
     <td>N/A</td>
-    <td>400</td>
+    <td>JSON body doesn’t match the schema</td>
   </tr>
   <tr>
     <td>001</td>
     <td>X-Correlation-ID</td>
-    <td>400</td>
+    <td>X-Correlation-ID was missing from Header or is in the wrong format</td>
   </tr>
   <tr>
     <td>002</td>
     <td>Date</td>
-    <td>400</td>
+    <td>Date was missing from Header or is in the wrong format</td>
   </tr>
   <tr>
     <td>003</td>
     <td>Content-Type</td>
-    <td>400</td>
+    <td>Content-Type was missing from Header or is in the wrong format</td>
   </tr>
   <tr>
     <td>004</td>
     <td>Accept</td>
-    <td>400</td>
+    <td>Accept was missing from Header or wrong format</td>
   </tr>
   <tr>
     <td>005</td>
     <td>X-Forwarded-Host</td>
-    <td>400</td>
+    <td>X-Forwarded-Host was missing from Header or wrong format</td>
   </tr>
   <tr>
     <td>006</td>
     <td>eori</td>
-    <td>400</td>
+    <td>Mandatory field eori was missing from body</td>
   </tr>
   <tr>
     <td>007</td>
     <td>eori</td>
-    <td>400</td>
+    <td>EORI number does not have a TGP</td>
   </tr>
   <tr>
     <td>008</td>
     <td>actorId</td>
-    <td>400</td>
+    <td>Mandatory field actorId was missing from body</td>
   </tr>
   <tr>
     <td>009</td>
     <td>traderRef</td>
-    <td>400</td>
+    <td>Mandatory field traderRef was missing from body</td>
   </tr>
   <tr>
     <td>010</td>
     <td>traderRef</td>
-    <td>400</td>
+    <td>Trying to create or update a record with a duplicate traderRef</td>
   </tr>
   <tr>
     <td>011</td>
     <td>comcode</td>
-    <td>400</td>
+    <td>Mandatory field comcode was missing from body</td>
   </tr>
   <tr>
     <td>012</td>
     <td>goodsDescription</td>
-    <td>400</td>
+    <td>Mandatory field goodsDescription was missing from body</td>
   </tr>
   <tr>
     <td>013</td>
     <td>countryOfOrigin</td>
-    <td>400</td>
+    <td>Mandatory field countryOfOrigin was missing from body</td>
   </tr>
   <tr>
     <td>014</td>
     <td>category</td>
-    <td>400</td>
+    <td>Mandatory field category was missing from body</td>
   </tr>
   <tr>
     <td>015</td>
     <td>assessments[].assessmentId</td>
-    <td>400</td>
+    <td>Optional field assessmentId is in the wrong format</td>
   </tr>
   <tr>
     <td>016</td>
     <td>assessments[].primaryCategory</td>
-    <td>400</td>
+    <td>Optional field primaryCategory is in the wrong format</td>
   </tr>
   <tr>
     <td>017</td>
     <td>assessments[].primaryCategory.condition.type</td>
-    <td>400</td>
+    <td>Optional field type is in the wrong format</td>
   </tr>
   <tr>
     <td>018</td>
     <td>assessments[].primaryCategory.condition.conditionId</td>
-    <td>400</td>
+    <td>Optional field conditionId is in the wrong format</td>
   </tr>
   <tr>
     <td>019</td>
     <td>assessments[].primaryCategory.condition.conditionDescription</td>
-    <td>400</td>
+    <td>Optional field conditionDescription is in the wrong format</td>
   </tr>
   <tr>
     <td>020</td>
     <td>assessments[].primaryCategory.condition.conditionTraderText</td>
-    <td>400</td>
+    <td>Optional field conditionTraderText is in the wrong format</td>
   </tr>
   <tr>
     <td>021</td>
     <td>supplementaryUnit</td>
-    <td>400</td>
+    <td>Optional field supplementaryUnit is in the wrong format</td>
   </tr>
   <tr>
     <td>022</td>
     <td>measurementUnit</td>
-    <td>400</td>
+    <td>Optional field measurementUnit is in the wrong format</td>
   </tr>
   <tr>
     <td>023</td>
     <td>comcodeEffectiveFromDate</td>
-    <td>400</td>
+    <td>Mandatory field comcodeEffectiveFromDate was missing from body</td>
   </tr>
   <tr>
     <td>024</td>
     <td>comcodeEffectiveToDate</td>
-    <td>400</td>
+    <td>Optional field comcodeEffectiveToDate is in the wrong format</td>
   </tr>
   <tr>
     <td>025</td>
     <td>recordId</td>
-    <td>400</td>
+    <td>The recordId has been provided in the wrong format</td>
   </tr>
   <tr>
     <td>026</td>
     <td>recordId</td>
-    <td>400</td>
+    <td>The requested recordId to update doesn’t exist</td>
   </tr>
   <tr>
     <td>027</td>
     <td>accreditationStatus</td>
-    <td>400</td>
+    <td>There is an ongoing accreditation request and the record can not be updated</td>
   </tr>
   <tr>
     <td>028</td>
     <td>lastUpdatedDate</td>
-    <td>400</td>
+    <td>The URL parameter lastUpdatedDate is in the wrong format</td>
   </tr>
   <tr>
     <td>029</td>
     <td>page</td>
-    <td>400</td>
+    <td>The URL parameter page is in the wrong format</td>
   </tr>
   <tr>
     <td>030</td>
     <td>size</td>
-    <td>400</td>
+    <td>The URL parameter size is in the wrong format</td>
   </tr>
   <tr>
     <td>031</td>
     <td>active</td>
-    <td>400</td>
+    <td>This record has been removed and cannot be updated</td>
   </tr>
 </table>

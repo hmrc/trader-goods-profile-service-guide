@@ -1,0 +1,37 @@
+---
+title: Before you start
+weight: 20
+---
+
+# Before you start
+
+<div class="govuk-inset-text">
+This API is in Alpha and may have breaking changes.
+</div>
+
+To use Trader Goods Profile (TGP), the trader responsible for moving the goods must have a registered account with HMRC. TGP is part of the Customs Declaration Service (CDS) so traders must be subscribed to CDS.
+
+As a software provider, you should share the following guidance with users of your service.
+
+> ## Requirements to use TGP
+> Your business must register for a Government Gateway or One Login that will allow you to access TGP using your software.
+>
+> The business moving the goods must be subscribed to the Customs Declaration Service (CDS).
+>
+> If your business does not have a Government Gateway or One Login for customs services, you can find out about [signing up for HMRC online services][hmrc-online].
+>
+> Your business will also need a GB or XI EORI number. You will be given an EORI number when setting up CDS.
+>
+> ### Registering to TGP
+> Your business will need their Government Gateway or One Login user ID to register for TGP.
+>
+> When your business registers, TGP will check your user ID and ask you for your business’ UK Internal Market Scheme (UKIMS) number.
+
+## Authority for your software to act on behalf of your users
+
+All endpoints in the Trader Goods Profile API are user-restricted. Your users must grant authority for your software to access it by signing in using the Government Gateway or One Login user ID that has been registered for the service.
+
+See the [Developer Hub Authorisation documentation][auth-docs] for how users grant authority to your software.
+
+[hmrc-online]: https://www.gov.uk/log-in-register-hmrc-online-services
+[auth-docs]: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation/user-restricted-endpoints
