@@ -12,12 +12,12 @@ This API is in Alpha and may have breaking changes.
 To develop using these APIs you must:
 
 - be familiar with HTTP, RESTful services, JSON and OAuth2
-- be registered as a developer on the [HMRC Developer Hub](\/)
+- be registered as a developer on the [HMRC Developer Hub][DEV_HUB]
 - add at least one sandbox application on the Developer Hub
 
 Each application you register will be assigned an HMRC ‘ApplicationId’.
 
-You can access all the applications you have registered on [Developer Hub Applications](/developer/applications).&nbsp;There, you can administer things like API subscriptions and [application credentials](/api-documentation/docs/authorisation/credentials).
+You can access all the applications you have registered on [Developer Hub Applications][DEV_HUB_APPS].&nbsp;There, you can administer things like API subscriptions and [application credentials][AUTH_CREDENTIALS].
 
 ### Sandbox environment
 
@@ -29,13 +29,23 @@ Production environments are for when you&apos;re ready to go live. You can reque
 
 The release versions of the API in the sandbox will be ahead of those in production.
 
-Find more details about [getting started using the sandbox environments.](/api-documentation/docs/testing)
+Find more details about [getting started using the sandbox environments.][SANDBOX_TESTING]
 
 ## Before you start
 
-1. Ensure that you have an HMRC [developer account](https://developer.service.hmrc.gov.uk/developer/login) - if you do not have one, you must [register for an account](https://developer.service.hmrc.gov.uk/developer/registration).
+1. Ensure that you have an HMRC [developer account][DEV_ACCT] - if you do not have one, you must [register for an account][DEV_REGISTER].
 2. Add your subscription to this API to your application.
-3. Learn about the user-restricted [authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation/user-restricted-endpoints) used by the API.
-4. [Create an application](https://developer.service.hmrc.gov.uk/developer/applications/) in our sandbox environment.
-5. Use the [Create Test User API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/api-platform-test-user/1.0) to create one or more test users for your sandbox application.
-6. Read the [testing guide](https://developer.service.hmrc.gov.uk/guides/ctc-traders-phase4-testing-guide/) to check that your software is compatible with this version of the API and to learn how to test your application in the sandbox environment.
+3. Learn about the user-restricted [authentication][USER_AUTH] used by the API.
+4. [Create an application][DEV_HUB_APPS] in our sandbox environment.
+5. Use the [Create Test User API][CREATE_TEST_USER] to create one or more test users for your sandbox application.
+6. Read the [testing guide][TESTING_GUIDE] to check that your software is compatible with this version of the API and to learn how to test your application in the sandbox environment.
+
+[DEV_HUB]: </api-documentation>
+[DEV_HUB_APPS]: </developer/applications>
+[AUTH_CREDENTIALS]: </api-documentation/docs/authorisation/credentials>
+[SANDBOX_TESTING]: </api-documentation/docs/testing>
+[DEV_ACCT]: </developer/login>
+[DEV_REGISTER]: </developer/registration>
+[USER_AUTH]: </api-documentation/docs/authorisation/user-restricted-endpoints>
+[CREATE_TEST_USER]: </api-documentation/docs/api/service/api-platform-test-user/1.0>
+[TESTING_GUIDE]: </guides/ctc-traders-phase4-testing-guide/>

@@ -11,7 +11,7 @@ This API is in Alpha and may have breaking changes.
 
 ## Create TGP record
 
-Traders can use your software to add new goods records to their Trader Goods Profile using the [Create a goods record](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page#tag/Goods-records/operation/createTraderGoodsProfileRecord) endpoint.
+Traders can use your software to add new goods records to their Trader Goods Profile using the [Create a goods record][CREATE_TGP_RECORD] endpoint.
 
 This will show an example journey for a user adding a goods record to their TGP.
 
@@ -25,13 +25,13 @@ The trader can then enter a trader reference. This must be unique to the trader�
 
 The trader will then provide a commodity code. This can be six digits for some goods. If the goods are category 1 or 2, the commodity code may need to be 8 or 10 digits.
 
-The commodity code can be validated using the [Trade tariff commodities API](https://api.trade-tariff.service.gov.uk/the-commodities-api.html). Your software can also retrieve the date the commodity code is valid from, and to. You should also retrieve a [measurement unit](https://api.trade-tariff.service.gov.uk/the-commodities-api.html#units-and-measure-components) if required for the commodity.
+The commodity code can be validated using the [Trade tariff commodities API][COMMODITIES_API]. Your software can also retrieve the date the commodity code is valid from, and to. You should also retrieve a [measurement unit][UNIT_COMPONENTS] if required for the commodity.
 
 ### 3\. Country of origin
 
 The trader will provide the country of origin of the goods. They can also provide an optional movement date for the goods.
 
-If the trader does not provide a movement date, you should consider this to be today’s date for the [Trade Tariff Categorisation API](https://api.trade-tariff.service.gov.uk/the-commodities-api.html).
+If the trader does not provide a movement date, you should consider this to be today’s date for the [Trade Tariff Categorisation API][COMMODITIES_API].
 
 ### 4\. Categorisation
 
@@ -55,7 +55,7 @@ When the trader has been shown all the applicable category assessments, a catego
 
 If the trader was able to exempt all assessments, then the trade is likely to be of standard goods. If the trader was not able to exempt all assessments, then the category will be 1 or 2 depending on the trade.
 
-You can find out more information about categorisation on the [Trade Tariff Categorisation API pages](https://api.trade-tariff.service.gov.uk/green-lanes.html).
+You can find out more information about categorisation on the [Trade Tariff Categorisation API pages][GREEN_LANES_API].
 
 ### 5\. Measurement unit
 
@@ -65,7 +65,7 @@ The Trade Tariff commodities API may return a measurement unit for the provided 
 
 Once the trader enters this information, your software can use the 'Create a goods record' endpoint to add the record to the trader’s TGP.
 
-Refer to the [API specification](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page) for more information on this endpoint.
+Refer to the [API specification][API_SPEC] for more information on this endpoint.
 
 ## Update TGP record
 
@@ -105,3 +105,9 @@ It may be useful to trader to use the updated since query. This will update the 
 It may be useful to use the 'Get a single goods record' query to check you have the latest version when a user updates a record.
 
 You need the record ID to be able to search for a single record.
+
+[CREATE_TGP_RECORD]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page#tag/Goods-records/operation/createTraderGoodsProfileRecord>
+[COMMODITIES_API]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html>
+[UNIT_COMPONENTS]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html#units-and-measure-components>
+[GREEN_LANES_API]: <https://api.trade-tariff.service.gov.uk/green-lanes.html>
+[API_SPEC]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page>
