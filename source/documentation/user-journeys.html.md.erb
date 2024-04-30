@@ -67,18 +67,6 @@ Once the trader enters this information, your software can use the 'Create a goo
 
 Refer to the [API specification][API_SPEC] for more information on this endpoint.
 
-## Update TGP record
-
-The ‘Update TGP records’ endpoint allows users of your software to update their existing goods records.
-
-When a trader updates a piece of information, your software will need to return a full record with the new information. We will check all the fields are in the correct format on an update and change the record.
-
-### Locked state
-
-Some records may be in a locked state. This could be because the trader has asked HMRC for an opinion if their goods record is correct.
-
-Once HMRC have reviewed the record, it will be unlocked. Your software will be able to identify if a record is locked.
-
 ## Get TGP records
 
 The 'Get TGP records' endpoint allows you to retrieve a list of a trader’s goods records for you to store or manipulate in your application.
@@ -105,6 +93,32 @@ It may be useful to trader to use the updated since query. This will update the 
 It may be useful to use the 'Get a single goods record' query to check you have the latest version when a user updates a record.
 
 You need the record ID to be able to search for a single record.
+
+## Update TGP record
+
+The ‘Update TGP records’ endpoint allows users of your software to update their existing goods records.
+
+When a trader updates a piece of information, your software will need to return a full record with the new information. We will check all the fields are in the correct format on an update and change the record.
+
+### Locked state
+
+Some records may be in a locked state. This could be because the trader has asked HMRC for an opinion if their goods record is correct.
+
+Once HMRC have reviewed the record, it will be unlocked. Your software will be able to identify if a record is locked.
+
+## Remove TGP record
+
+The ‘Remove TGP record’ endpoint allows users of your software to remove an existing goods record.
+
+When a trader wants to remove a goods record that is no longer needed in their TGP, you’ll need to provide their recordID and their EORI number.
+
+When a record is removed, it is not deleted and will still appear when you get records. The ‘active’ value would still appear but would now be false. You would not be expected to show it to your users.
+
+### Unlocked state
+
+Traders cannot remove a locked record from their TGP. The record must be in an unlocked state. You may want to get the latest version of the record using the ‘Get TGP records’ endpoint before you attempt to remove the record.
+
+Traders cannot restore a record once they remove it from TGP.
 
 [CREATE_TGP_RECORD]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page#tag/Goods-records/operation/createTraderGoodsProfileRecord>
 [COMMODITIES_API]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html>
