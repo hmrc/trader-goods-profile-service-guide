@@ -120,6 +120,67 @@ Traders cannot remove a locked record from their TGP. The record must be in an u
 
 Traders cannot restore a record once they remove it from TGP.
 
+## Request accreditation
+
+HMRC offers advice to confirm if the trader has the correct commodity code in a goods record. To ask HMRC for advice on a record, you can use the 'Request Accreditation' endpoint.
+
+### Making a request
+
+Traders can only request advice on an existing goods record. Use the ‘Create TGP record’ endpoint to create a new record.
+
+You will need to provide all the details of the goods record in your request to HMRC. This will help the caseworker make an informed decision.
+
+HMRC need to know who to contact about the request. You will need to provide the contact’s name and email address.
+
+### Request in progress
+
+Once the request has been submitted, the record will be ‘locked’ for editing until the request is complete.
+
+You can use the ‘Get TGP records’ endpoint to check the progress of the request using the ‘accreditation status’ field. The states can be:
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Not requested</th>
+      <td>The trader has not made a request for HMRC to check the record.</td>
+    </tr>
+    <tr>
+      <th>Requested</th>
+      <td>The trader has made a request, but HMRC have not started to look at the record.</td>
+    </tr>
+    <tr>
+      <th>In progress</th>
+      <td>HMRC have started to look at the request.</td>
+    </tr>
+    <tr>
+      <th>Withdrawn</th>
+      <td>The trader has withdrawn the request for HMRC to review the record.</td>
+    </tr>
+    <tr>
+      <th>Approved</th>
+      <td>HMRC have agreed the record is correct.</td>
+    </tr>
+    <tr>
+      <th>Rejected</th>
+      <td>The HMRC caseworker does not agree the commodity code is correct.</td>
+    </tr>
+  </tbody>
+</table>
+
+The caseworker may contact the trader for more information about the goods.
+
+### Result
+
+HMRC will contact the trader with their decision. The ‘accreditation status’ will also change and the case will unlock.
+
+If the trader changes the commodity code or goods description, the record will no longer be accredited.
+
 [CREATE_TGP_RECORD]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page#tag/Goods-records/operation/createTraderGoodsProfileRecord>
 [COMMODITIES_API]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html>
 [UNIT_COMPONENTS]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html#units-and-measure-components>
