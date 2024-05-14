@@ -27,6 +27,9 @@ footer_links:
 # Enables search functionality. This indexes pages only and is not recommended for single-page sites.
 enable_search: false
 
+# Tracking ID from Google Analytics (e.g. UA-XXXX-Y)
+ga_tracking_id: UA-43414424-1
+
 # Enables the tracking consent banner
 tracking_consent_frontend:
   url: /tracking-consent/tracking.js
