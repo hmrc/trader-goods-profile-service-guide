@@ -46,12 +46,14 @@ All errors from TGP Digital will return a JSON map with two keys: "code" and "me
 ### Example error response
 ```json
 {
+  "correlationId": "3e8dae97-b586-4cef-8511-68ac12da9028",
   "code": "BAD_REQUEST",
   "message": "Bad request",
   "errors": [
     {
-      "code": "005",
-      "message": "Missing or Invalid Header"
+      "code": "INVALID_REQUEST_PARAMETER",
+      "message": "traderRef is not unique for all the provided trader's goods records",
+      "errorNumber": 10
     }
   ]
 }
@@ -60,16 +62,19 @@ All errors from TGP Digital will return a JSON map with two keys: "code" and "me
 ### Example error response with multiple errors
 ```json
 {
+  "correlationId": "3e8dae97-b586-4cef-8511-68ac12da9028",
   "code": "BAD_REQUEST",
   "message": "Bad request",
   "errors": [
     {
-      "code": "005",
-      "message": "Missing or Invalid Header"
+      "code": "INVALID_REQUEST_PARAMETER",
+      "message": "traderRef is not unique for all the provided trader's goods records",
+      "errorNumber": 10
     },
     {
-      "code": "011",
-      "message": "Missing or invalid mandatory request parameter"
+      "code": "INVALID_REQUEST_PARAMETER",
+      "message": "Mandatory field goodsDescription was missing from body or is in the wrong format",
+      "errorNumber": 12
     }
   ]
 }
