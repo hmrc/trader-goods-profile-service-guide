@@ -176,6 +176,35 @@ HMRC will contact the trader with their decision. The ‘accreditation status’
 
 If the trader changes the commodity code or goods description, the record will no longer be accredited.
 
+## Maintain profile
+
+TGP hold information about the schemes a trader is a member of. These schemes can change the category of certain goods.
+
+The schemes TGP holds information about are:
+
+- UK Internal Market Scheme (UKIMS)
+- Northern Ireland Retail Movement Scheme (NIRMS)
+- Northern Ireland plant health label (NIPHL)
+
+UKIMS authorisation is a requirement to use TGP. NIRMS and NIPHL are optional.
+
+You can get the scheme information as part of the record body when using the 'Get TGP Records' endpoint.
+
+### Updating scheme information
+
+If the trader needs to update their scheme information, you can do this using the 'Maintain TGP Profile' endpoint.
+
+You may need to use this endpoint if:
+
+- the traders’ authorisation or membership number changes
+- the trader joins or leaves one of the schemes
+
+UKIMS number cannot be removed from a profile.
+
+To update the information, you should provide the current value for UKIMS, NIRMS and NIPHL, not the one that is changing. A blank value would remove existing information.
+
+If a trader does not have NIRMS or NIPHL, you should leave this information blank.
+
 [CREATE_TGP_RECORD]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page#tag/Goods-records/operation/createTraderGoodsProfileRecord>
 [COMMODITIES_API]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html>
 [UNIT_COMPONENTS]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html#units-and-measure-components>
