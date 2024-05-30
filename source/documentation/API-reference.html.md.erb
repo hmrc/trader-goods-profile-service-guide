@@ -32,6 +32,120 @@ Required scopes: trader-goods-profiles
 
 Learn more about the [Trader Goods Profile API endpoints][API_SPEC].
 
+## Trader Goods Profile stubs
+
+Below are a list of EORI numbers that can be swapped out to get various different results with these stubs.
+
+### Create Record Stubs
+
+| EORI to provide | EXPECTED RESPONSE         | STATUS CODE |
+|-----------------|---------------------------|-------------|
+| GB123456789001  | CREATED                   | 201         |
+| GB123456789002  | Invalid Request Parameter | 400         |
+| GB123456789003  | Invalid payload           | 400         |
+| GB123456789004  | Invalid Request Parameter | 400         |
+| GB123456789005  | not found                 | 404         |
+| GB123456789006  | Invalid Method            | 405         |
+| GB123456789007  | Internal server error     | 500         |
+| GB123456789008  | Internal server error     | 500         |
+| GB123456789009  | Internal server error     | 500         |
+| GB123456789010  | Internal server error     | 500         |
+
+#### Example request
+
+```json
+{
+  "eori": "<replace with above field for the desired result>",
+  "actorId": "GB098765432112",
+  "traderRef": "BAN001001",
+  "comcode": "10410100",
+  "goodsDescription": "Organic bananas",
+  "countryOfOrigin": "EC",
+  "category": 1,
+  "assessments": [
+    {
+      "assessmentId": "8ce911dcd4911c785a4d886919c74485",
+      "primaryCategory": 1,
+      "condition": {
+        "type": "abc123",
+        "conditionId": "Y923",
+        "conditionDescription": "Products not considered as waste according to Regulation (EC) No 1013/2006 as retained in UK law",
+        "conditionTraderText": "Excluded product"
+      }
+    }
+  ],
+  "supplementaryUnit": 500,
+  "measurementUnit": "Square metre (m²)",
+  "comcodeEffectiveFromDate": "2024-11-18T23:20:19Z",
+  "comcodeEffectiveToDate": "2024-11-18T23:20:19Z"
+}
+```
+
+### Get Record Stubs
+
+| EORI to provide | EXPECTED RESPONSE         | STATUS CODE |
+|-----------------|---------------------------|-------------|
+| GB123456789001  | OK                        | 200         |
+| GB123456789003  | OK                        | 200         |
+| GB123456789004  | OK                        | 200         |
+| GB123456789006  | Internal server error     | 500         |
+| GB123456789007  | not found                 | 404         |
+| GB123456789008  | Method not allowed        | 405         |
+
+#### HTTP method : GET
+
+```eori: <replace with above field for the desired result>```<br>
+```url: https://<host>/tgp/getrecord/v1/{eori}/{recordId}```
+
+PAGINATION URL
+
+```url: https://<host>/tgp/getrecord/v1/{eori}?lastUpdatedDate=2024-03-26T16:14:52Z&page=1&size=5```
+
+### Get Single Record Stub
+
+Replace `{eori}` and `{recordId}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
+
+```
+GET https://<host>/tgp/getrecords/v1/{eori}/{recordId}
+```
+
+| EORI to provide | Record Id to provide                 | Expected Response       | HTTP Status Code |
+|-----------------|--------------------------------------|-------------------------|------------------|
+| GB123456789001  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Successful retrieval    | 200              |
+| GB123456789002  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Record not found        | 404              |
+| GB123456789003  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Invalid recordID format | 400              |
+| GB123456789004  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Invalid URL             | 404              |
+| GB123456789005  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Method not allowed      | 405              |
+| GB123456789006  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Internal server error   | 500              |_
+
+### Remove Record Stub
+
+Replace `{eori}` in the request payload with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
+
+```
+PUT https://<host>/tgp/removerecord/v1
+```
+
+| EORI to provide | Record Id to provide                 | Actor ID to provide | Expected Response                    | HTTP Status Code |
+|-----------------|--------------------------------------|---------------------|--------------------------------------|------------------|
+| GB123456789001  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Successful removal                   | 200              |
+| GB123456789002  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid request parameter (eori)     | 400              |
+| GB123456789003  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid request parameter (recordId) | 400              |
+| GB123456789004  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid request parameter (actorId)  | 400              |
+| GB123456789005  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Internal server error                | 500              |
+| GB123456789006  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid URL                          | 404              |
+| GB123456789007  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Method not allowed                   | 405              |
+
+#### Example request payload
+
+```json
+{
+    "eori": "GB123456789001",
+    "actorId": "GB098765432112",
+    "recordId": "8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f"
+}
+```
+
 [USER_AUTH]: </api-documentation/docs/authorisation/user-restricted-endpoints>
 [AUTHORISATION]: </api-documentation/docs/authorisation>
 [API_SPEC]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page>
