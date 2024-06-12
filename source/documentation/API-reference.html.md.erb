@@ -34,9 +34,7 @@ Learn more about the [Trader Goods Profile API endpoints][API_SPEC].
 
 ## Trader Goods Profile stubs
 
-Below are a list of EORI numbers that can be swapped out to get various different results with these stubs.
-
-### Create Record Stubs
+### Create Record Stub
 
 Replace `{eori}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
 
@@ -86,7 +84,52 @@ POST https://<host>/customs/traders/goods-profiles/{eori}/records
 }
 ```
 
-### Get Record Stubs
+### Update Record Stub
+
+Replace `{eori}` and `{recordId}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
+
+```
+PATCH https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}
+```
+
+| EORI to provide | Expected behaviour                                                    | Expected response | Status code |
+|-----------------|-----------------------------------------------------------------------|-------------------|-------------|
+| GB123456789001  | Success response                                                      | OK                | 200         |
+| GB123456789002  | traderRef is not unique for all the provided eori goods records       | Bad request       | 400         |
+| GB123456789003  | Record is locked and cannot be updated until advice request withdrawn | Bad request       | 400         |
+| GB123456789004  | A deactivated record cannot be updated                                | Bad request       | 400         |
+
+#### Example request
+
+```json
+{
+  "actorId": "GB098765432112",
+  "recordId": "8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f",
+  "traderRef": "BAN001001",
+  "comcode": "10410100",
+  "goodsDescription": "Organic bananas",
+  "countryOfOrigin": "EC",
+  "category": 3,
+  "assessments": [
+    {
+      "assessmentId": "8ce911dcd4911c785a4d886919c74485",
+      "primaryCategory": 1,
+      "condition": {
+        "type": "Document Code",
+        "conditionId": "Y923",
+        "conditionDescription": "Products not considered as waste according to Regulation (EC) No 1013/2006 as retained in UK law",
+        "conditionTraderText": "Excluded product"
+      }
+    }
+  ],
+  "supplementaryUnit": 500,
+  "measurementUnit": "square meters(m²)",
+  "comcodeEffectiveFromDate": "2024-01-18T23:20:19Z",
+  "comcodeEffectiveToDate": "2024-11-18T23:20:19Z"
+}
+```
+
+### Get Record Stub
 
 Replace `{eori}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
 
@@ -117,14 +160,14 @@ Replace `{eori}` and `{recordId}` in the URL with the values specified in the ta
 GET https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}
 ```
 
-| EORI to provide | Record Id to provide                 | Expected Response       | Status Code      |
-|-----------------|--------------------------------------|-------------------------|------------------|
-| GB123456789001  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Successful retrieval    | 200              |
-| GB123456789002  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Record not found        | 404              |
-| GB123456789003  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Invalid recordId format | 400              |
-| GB123456789004  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Invalid URL             | 404              |
-| GB123456789005  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Method not allowed      | 405              |
-| GB123456789006  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Internal server error   | 500              |_
+| EORI to provide | recordId to provide                  | Expected response       | Status code |
+|-----------------|--------------------------------------|-------------------------|-------------|
+| GB123456789001  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Successful retrieval    | 200         |
+| GB123456789002  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Record not found        | 404         |
+| GB123456789003  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Invalid recordId format | 400         |
+| GB123456789004  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Invalid URL             | 404         |
+| GB123456789005  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Method not allowed      | 405         |
+| GB123456789006  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Internal server error   | 500         |
 
 ### Remove Record Stub
 
@@ -134,7 +177,7 @@ Replace `{eori}` and `{recordId}` in the URL with the values specified in the ta
 PUT https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}
 ```
 
-| EORI to provide | Record Id to provide                 | Actor Id to provide | Expected Response                    | Status Code      |
+| EORI to provide | recordId to provide                  | actorId to provide  | Expected response                    | Status code      |
 |-----------------|--------------------------------------|---------------------|--------------------------------------|------------------|
 | GB123456789001  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Successful removal                   | 200              |
 | GB123456789002  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid request parameter (eori)     | 400              |
@@ -144,11 +187,67 @@ PUT https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}
 | GB123456789006  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid URL                          | 404              |
 | GB123456789007  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Method not allowed                   | 405              |
 
-#### Example request payload
+#### Example request
 
 ```json
 {
   "actorId": "GB098765432112"
+}
+```
+
+### Request Advice Stub
+
+Replace `{eori}` and `{recordId}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
+
+```
+POST https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}/advice
+```
+
+| EORI to provide | Expected behaviour             | Status code |
+|-----------------|--------------------------------|-------------|
+| GB123456789011  | Advice request is created      | 201         |
+| GB123456789012  | JSON payload is invalid        | 400         |
+| GB123456789013  | Internal error response        | 500         |
+| GB123456789014  | Unauthorised                   | 500         |
+| GB123456789015  | Internal server error from EIS | 500         |
+| GB123456789016  | Service unavailable            | 500         |
+| GB123456789017  | Bad gateway                    | 500         |
+
+#### Example request
+
+```json
+{
+  "actorId": "GB987654321098",
+  "requestorName": "Mr. Phil Edwards",
+  "requestorEmail": "Phil.Edwards@gmail.com"
+}
+```
+
+### Maintain Profile Stub
+
+Replace `{eori}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
+
+```
+PUT https://api.service.hmrc.gov.uk/customs/traders/goods-profiles/{eori}
+```
+
+| EORI to provide | Expected response                            | Status code |
+|-----------------|----------------------------------------------|-------------|
+| GB123456789001  | Created                                      | 201         |
+| GB123456789004  | Not found                                    | 404         |
+| GB123456789005  | Method not allowed                           | 405         |
+| GB123456789006  | Internal server error                        | 500         |
+| GB123456789007  | Internal server error with 401 code          | 500         |
+| GB123456789008  | Internal server error with 200 empty payload | 500         |
+
+#### Example request
+
+```json
+{
+  "actorId": "GB987654321098",
+  "ukimsNumber": "XIUKIM47699357400020231115081800",
+  "nirmsNumber": "RMS-GB-123456",
+  "niphlNumber": "6 S12345"
 }
 ```
 
