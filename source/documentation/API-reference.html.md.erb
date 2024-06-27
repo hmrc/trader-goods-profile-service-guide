@@ -32,6 +32,20 @@ Required scopes: trader-goods-profiles
 
 Learn more about the [Trader Goods Profile API endpoints][API_SPEC].
 
+## Authorisation flow diagram
+<a href="../images/TGP_Authorisation_and_Access_Flow.png" target="blank"><img src="../images/TGP_Authorisation_and_Access_Flow.png" alt="TGP Authorisation and Access Flow" style="width:720px;" /></a>
+
+This explains the steps shown in the above diagram on the access flow for Trader Goods Profile API. The diagram illustrates how a trader would authorise the application. Then how intermediaries can access the TGP API without receiving the access token.
+
+1. The trader authorises the application and picks their intermediary or agent
+2. The application requests an access token from the authorisation server
+3. The authorisation server issues the access token to the application
+4. The application grants access to TGP to the intermediary or agent
+5. The intermediary or agent requests access to TGP via the application
+6. The application uses the access token on the intermediary or agent’s behalf to access the TGP API
+
+The Intermediary or agent does not receive the access token directly. The application uses it on their behalf.
+
 ## Trader Goods Profile stubs
 
 ### Create Record Stub
