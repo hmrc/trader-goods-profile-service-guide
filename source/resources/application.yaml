@@ -470,7 +470,7 @@ components:
           description: Northern Ireland Retail Movement Scheme registration number
         NIPHL_number: 
           type: string
-          example: 6 S12345
+          example: S12345
           description: Northern Ireland Plant Health Label scheme registration number
         last_created_date:
           "$ref": "#/components/schemas/TGPDateTime"
@@ -595,7 +595,7 @@ components:
           description: Northern Ireland Retail Movement Scheme registration number
         NIPHL_number: 
           type: string
-          example: 6 S12345
+          example: S12345
           description: Northern Ireland Plant Health Label scheme registration number
         last_created_date:
           "$ref": "#/components/schemas/TGPDateTime"
