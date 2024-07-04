@@ -127,8 +127,6 @@ HMRC offers advice to confirm if the trader has the correct commodity code in a 
 
 Traders can only request advice on an existing goods record. Use the ‘Create TGP record’ endpoint to create a new record.
 
-You will need to provide the recordID in your request to HMRC.
-
 HMRC need to know who to contact about the request. You will need to provide the contact’s name and email address.
 
 ### Request in progress
@@ -158,6 +156,10 @@ You can use the ‘Get TGP records’ endpoint to check the progress of the requ
       <td>HMRC have started to look at the request.</td>
     </tr>
     <tr>
+      <th>Information requested</th>
+      <td>HMRC have requested more information about the record.</td>
+    </tr>
+    <tr>
       <th>Approved</th>
       <td>HMRC have agreed the record is correct.</td>
     </tr>
@@ -175,6 +177,20 @@ The caseworker may contact the trader for more information about the goods.
 HMRC will contact the trader with their decision. The ‘adviceStatus’ will also change and the case will unlock.
 
 If the trader changes the commodity code or goods description, the record will no longer be advised.
+
+## Withdraw advice request
+
+Where a request for advice has been submitted for a record, it is possible to withdraw the request. This might be needed if the advice request is no longer needed, or the trader wants to make a change to their record before requesting advice again.
+
+### Withdrawing a request
+
+Traders can only withdraw an advice request where a request is currently open on a record. Records with the following advice statuses can have the request withdrawn:
+
+- Requested
+- In progress
+- Information requested
+
+HMRC would like to know the reason for withdrawing the request. You can optionally provide a withdrawReason with the request.
 
 ## Maintain profile
 
