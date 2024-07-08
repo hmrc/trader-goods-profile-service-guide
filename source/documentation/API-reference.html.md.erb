@@ -69,7 +69,7 @@ Schema validation is applied to the endpoints in the same way as the production 
 
 ### Creating a new TGP for test users in the dynamic sandbox
 
-In the <u>sandbox environment only</u>, the Maintain TGP Profile endpoint can be used to create new TGPs for test users you’ve set up in the [Developer Hub][DEV_HUB].
+In the sandbox environment only, the Maintain TGP Profile endpoint can be used to create new TGPs for test users you’ve set up in the [Developer Hub][DEV_HUB].
 
 To create a new TGP, you’ll need to use the test user’s EORI number as the eori in the request as well as the actorId. You’ll also need to provide a number matching the required format for a UKIMS number to create the profile. Optionally you can also provide dummy data in the correct format for NIRMS or NIPHL numbers.
 
@@ -82,7 +82,6 @@ Once created, you’ll be able to create and manipulate data for this test user�
 The following endpoints do not provide dynamic behaviour:
 
 - Request advice
-- Withdraw advice
 
 When testing the functionality for these endpoints you should refer to [Trader Goods Profile stubs][TGP_STUB] for details of test data.
 
