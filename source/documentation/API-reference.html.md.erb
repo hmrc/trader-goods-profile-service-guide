@@ -46,6 +46,66 @@ This explains the steps shown in the above diagram on the access flow for Trader
 
 The Intermediary or agent does not receive the access token directly. The application uses it on their behalf.
 
+## Testing your Trader Goods Profile integration
+
+### Using the Trader Goods Profile sandbox environment
+
+The TGP sandbox provides a mix of dynamic and static behaviour, along with an Admin API. This combination of test endpoints allows you to test the creation and subsequent updates to goods records over the course of trader’s use of TGP.
+
+### Dynamic endpoints
+
+The TGP sandbox contains a test data store allowing you to create and manipulate data as part of the user journey. The following endpoints support dynamic behaviour:
+
+- Create a TGP goods record
+- Update a TGP goods record
+- Get TGP goods records
+- Get a single TGP goods record
+- Remove a TGP goods record
+- Maintain TGP profile
+
+Records created and updated within the data store will persist for one year.
+
+Schema validation is applied to the endpoints in the same way as the production endpoints, so attempting to create or update a record with invalid data will result in an error being returned.
+
+### Creating a new TGP for test users in the dynamic sandbox
+
+In the <u>sandbox environment only</u>, the Maintain TGP Profile endpoint can be used to create new TGPs for test users you’ve set up in the [Developer Hub][DEV_HUB].
+
+To create a new TGP, you’ll need to use the test user’s EORI number as the eori in the request as well as the actorId. You’ll also need to provide a number matching the required format for a UKIMS number to create the profile. Optionally you can also provide dummy data in the correct format for NIRMS or NIPHL numbers.
+
+Once created, you’ll be able to create and manipulate data for this test user’s EORI within the dynamic sandbox.
+
+*Note: the Maintain TGP Profile can not be used to create new profiles in the production environment.*
+
+### Static endpoints
+
+The following endpoints do not provide dynamic behaviour:
+
+- Request advice
+- Withdraw advice
+
+When testing the functionality for these endpoints you should refer to [Trader Goods Profile stubs][TGP_STUB] for details of test data.
+
+### Admin API
+
+*Note: The TGP Admin API exists purely within the sandbox environment and does not exist in the production environment.*
+
+The Admin API allows you to update data values which are not typically possible from the client side. This is because they are applied by the HMRC systems in response to specific triggers or business rules.
+
+- Commodity code has expired in Trade Tariff
+    - a goods record should have the toReview value updated to true with a reviewReason of “The commodity code has expired. You’ll need to change the commodity code and categorise the goods.”
+
+- Measures have changed in Trade Tariff
+    - the goods record should have the toReview value updated to true with a reviewReason of “The restrictions have changed or there may be new restrictions. You need to categorise the record.”
+
+- Record is locked due to an open advice request
+    - the goods record should have the adviceStatus value updated to “Requested”, “In progress” or “Information requested” and the locked value should be true.
+
+- Record has a different declarable state
+    - the goods record should have the declarable value updated to “Ready for IMMI”, “Not ready for IMMI” or “Not ready for use”.
+
+Refer to the Admin API endpoint specification for more information.
+
 ## Trader Goods Profile stubs
 
 ### Create Record Stub
@@ -55,19 +115,6 @@ Replace `{eori}` in the URL with the values specified in the table below to simu
 ```
 POST https://<host>/customs/traders/goods-profiles/{eori}/records
 ```
-
-| EORI to provide | Expected response         | Status code |
-|-----------------|---------------------------|-------------|
-| GB123456789001  | Created                   | 201         |
-| GB123456789002  | Invalid request parameter | 400         |
-| GB123456789003  | Invalid payload           | 400         |
-| GB123456789004  | Invalid request parameter | 400         |
-| GB123456789005  | Not found                 | 404         |
-| GB123456789006  | Invalid method            | 405         |
-| GB123456789007  | Internal server error     | 500         |
-| GB123456789008  | Internal server error     | 500         |
-| GB123456789009  | Internal server error     | 500         |
-| GB123456789010  | Internal server error     | 500         |
 
 #### Example request
 
@@ -105,13 +152,6 @@ Replace `{eori}` and `{recordId}` in the URL with the values specified in the ta
 ```
 PATCH https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}
 ```
-
-| EORI to provide | Expected behaviour                                                    | Expected response | Status code |
-|-----------------|-----------------------------------------------------------------------|-------------------|-------------|
-| GB123456789001  | Success response                                                      | OK                | 200         |
-| GB123456789002  | traderRef is not unique for all the provided eori goods records       | Bad request       | 400         |
-| GB123456789003  | Record is locked and cannot be updated until advice request withdrawn | Bad request       | 400         |
-| GB123456789004  | A deactivated record cannot be updated                                | Bad request       | 400         |
 
 #### Example request
 
@@ -157,15 +197,6 @@ PAGINATION URL
 GET https://<host>/customs/traders/goods-profiles/{eori}/records?lastUpdatedDate=2024-03-26T16:14:52Z&page=1&size=5
 ```
 
-| EORI to provide | Expected response         | Status code |
-|-----------------|---------------------------|-------------|
-| GB123456789001  | OK                        | 200         |
-| GB123456789003  | OK                        | 200         |
-| GB123456789004  | OK                        | 200         |
-| GB123456789006  | Internal server error     | 500         |
-| GB123456789007  | Not found                 | 404         |
-| GB123456789008  | Method not allowed        | 405         |
-
 ### Get Single Record Stub
 
 Replace `{eori}` and `{recordId}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
@@ -174,15 +205,6 @@ Replace `{eori}` and `{recordId}` in the URL with the values specified in the ta
 GET https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}
 ```
 
-| EORI to provide | recordId to provide                  | Expected response       | Status code |
-|-----------------|--------------------------------------|-------------------------|-------------|
-| GB123456789001  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Successful retrieval    | 200         |
-| GB123456789002  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Record not found        | 404         |
-| GB123456789003  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Invalid recordId format | 400         |
-| GB123456789004  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Invalid URL             | 404         |
-| GB123456789005  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Method not allowed      | 405         |
-| GB123456789006  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | Internal server error   | 500         |
-
 ### Remove Record Stub
 
 Replace `{eori}` and `{recordId}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
@@ -190,16 +212,6 @@ Replace `{eori}` and `{recordId}` in the URL with the values specified in the ta
 ```
 PUT https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}
 ```
-
-| EORI to provide | recordId to provide                  | actorId to provide  | Expected response                    | Status code      |
-|-----------------|--------------------------------------|---------------------|--------------------------------------|------------------|
-| GB123456789001  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Successful removal                   | 200              |
-| GB123456789002  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid request parameter (eori)     | 400              |
-| GB123456789003  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid request parameter (recordId) | 400              |
-| GB123456789004  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid request parameter (actorId)  | 400              |
-| GB123456789005  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Internal server error                | 500              |
-| GB123456789006  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Invalid URL                          | 404              |
-| GB123456789007  | 8ebb6b04-6ab0-4fe2-ad62-e6389a8a204f | GB098765432112      | Method not allowed                   | 405              |
 
 #### Example request
 
@@ -245,15 +257,6 @@ Replace `{eori}` in the URL with the values specified in the table below to simu
 PUT https://api.service.hmrc.gov.uk/customs/traders/goods-profiles/{eori}
 ```
 
-| EORI to provide | Expected response                            | Status code |
-|-----------------|----------------------------------------------|-------------|
-| GB123456789001  | Created                                      | 201         |
-| GB123456789004  | Not found                                    | 404         |
-| GB123456789005  | Method not allowed                           | 405         |
-| GB123456789006  | Internal server error                        | 500         |
-| GB123456789007  | Internal server error with 401 code          | 500         |
-| GB123456789008  | Internal server error with 200 empty payload | 500         |
-
 #### Example request
 
 ```json
@@ -268,3 +271,5 @@ PUT https://api.service.hmrc.gov.uk/customs/traders/goods-profiles/{eori}
 [USER_AUTH]: </api-documentation/docs/authorisation/user-restricted-endpoints>
 [AUTHORISATION]: </api-documentation/docs/authorisation>
 [API_SPEC]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page>
+[DEV_HUB]: </api-test-user>
+[TGP_STUB]: </guides/trader-goods-profile-service-guide/documentation/API-reference.html#trader-goods-profile-stubs>
