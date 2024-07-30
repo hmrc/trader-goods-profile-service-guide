@@ -86,191 +86,229 @@ All errors from TGP Digital will return a JSON map with two keys: "code" and "me
   <tr>
     <th>Error Number</th>
     <th>Field Name</th>
+    <th>Endpoints</th>
     <th>Description</th>
   </tr>
   <tr>
     <td>0</td>
     <td>N/A</td>
+    <td>All endpoints</td>
     <td>JSON body doesn’t match the schema</td>
   </tr>
   <tr>
     <td>1</td>
     <td>X-Correlation-ID</td>
+    <td>All endpoints</td>
     <td>X-Correlation-ID was missing from Header or is in the wrong format</td>
   </tr>
   <tr>
     <td>2</td>
     <td>Date</td>
+    <td>All endpoints</td>
     <td>Date was missing from Header or is in the wrong format</td>
   </tr>
   <tr>
     <td>3</td>
     <td>Content-Type</td>
+    <td>All endpoints</td>
     <td>Content-Type was missing from Header or is in the wrong format</td>
   </tr>
   <tr>
     <td>4</td>
     <td>Accept</td>
+    <td>All endpoints</td>
     <td>Accept was missing from Header or is in the wrong format</td>
   </tr>
   <tr>
     <td>5</td>
     <td>X-Forwarded-Host</td>
+    <td>All endpoints</td>
     <td>X-Forwarded-Host was missing from Header or is in the wrong format</td>
   </tr>
   <tr>
     <td>6</td>
     <td>eori</td>
+    <td>All endpoints</td>
     <td>Mandatory field eori was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>7</td>
     <td>eori</td>
+    <td>All endpoints</td>
     <td>EORI number does not have a TGP</td>
   </tr>
   <tr>
     <td>8</td>
     <td>actorId</td>
+    <td>Create TGP record, Update TGP record, Remove TGP record</td>
     <td>Mandatory field actorId was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>9</td>
     <td>traderRef</td>
+    <td>Create TGP record, Update TGP record, Remove TGP record</td>
     <td>Mandatory field traderRef was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>10</td>
     <td>traderRef</td>
+    <td>Create TGP record, Update TGP record, Remove TGP record</td>
     <td>Trying to create or update a record with a duplicate traderRef</td>
   </tr>
   <tr>
     <td>11</td>
     <td>comcode</td>
+    <td>Create TGP record</td>
     <td>Mandatory field comcode was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>12</td>
     <td>goodsDescription</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Mandatory field goodsDescription was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>13</td>
     <td>countryOfOrigin</td>
+    <td>Create TGP record, Update TGP record, Remove TGP record</td>
     <td>Mandatory field countryOfOrigin was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>14</td>
     <td>category</td>
+    <td>Create TGP record, Update TGP record, Remove TGP record</td>
     <td>Mandatory field category was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>15</td>
     <td>assessments[].assessmentId</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field assessmentId is in the wrong format</td>
   </tr>
   <tr>
     <td>16</td>
     <td>assessments[].primaryCategory</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field primaryCategory is in the wrong format</td>
   </tr>
   <tr>
     <td>17</td>
     <td>assessments[].primaryCategory.condition.type</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field type is in the wrong format</td>
   </tr>
   <tr>
     <td>18</td>
     <td>assessments[].primaryCategory.condition.conditionId</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field conditionId is in the wrong format</td>
   </tr>
   <tr>
     <td>19</td>
     <td>assessments[].primaryCategory.condition.conditionDescription</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field conditionDescription is in the wrong format</td>
   </tr>
   <tr>
     <td>20</td>
     <td>assessments[].primaryCategory.condition.conditionTraderText</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field conditionTraderText is in the wrong format</td>
   </tr>
   <tr>
     <td>21</td>
     <td>supplementaryUnit</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field supplementaryUnit is in the wrong format</td>
   </tr>
   <tr>
     <td>22</td>
     <td>measurementUnit</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field measurementUnit is in the wrong format</td>
   </tr>
   <tr>
     <td>23</td>
     <td>comcodeEffectiveFromDate</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Mandatory field comcodeEffectiveFromDate was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>24</td>
     <td>comcodeEffectiveToDate</td>
+    <td>Create TGP record, Update TGP record</td>
     <td>Optional field comcodeEffectiveToDate is in the wrong format</td>
   </tr>
   <tr>
     <td>25</td>
     <td>recordId</td>
+    <td>Update TGP record, Get TGP record, Remove TGP record</td>
     <td>The recordId has been provided in the wrong format</td>
   </tr>
   <tr>
     <td>26</td>
     <td>recordId</td>
+    <td>Update TGP record, Get TGP record, Remove TGP record</td>
     <td>The requested recordId to update doesn’t exist</td>
   </tr>
   <tr>
     <td>27</td>
     <td>adviceStatus</td>
+    <td>Update TGP record, Remove TGP record</td>
     <td>There is an ongoing advice request and the record can not be updated</td>
   </tr>
   <tr>
     <td>28</td>
     <td>lastUpdatedDate</td>
+    <td>Get TGP record, Update TGP record</td>
     <td>The URL parameter lastUpdatedDate is in the wrong format</td>
   </tr>
   <tr>
     <td>29</td>
     <td>page</td>
+    <td>Get TGP record</td>
     <td>The URL parameter page is in the wrong format</td>
   </tr>
   <tr>
     <td>30</td>
     <td>size</td>
+    <td>Get TGP record</td>
     <td>The URL parameter size is in the wrong format</td>
   </tr>
   <tr>
     <td>31</td>
     <td>active</td>
+    <td>Update TGP record, Remove TGP record</td>
     <td>This record has been removed and cannot be updated</td>
   </tr>
   <tr>
     <td>33</td>
     <td>ukimsNumber</td>
+    <td>Request advice</td>
     <td>Mandatory field ukimsNumber was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>34</td>
     <td>nirmsNumber</td>
+    <td>Maintain Profile</td>
     <td>Optional field nirmsNumber is in the wrong format</td>
   </tr>
   <tr>
     <td>35</td>
     <td>niphlNumber</td>
+    <td>Maintain Profile</td>
     <td>Optional field niphlNumber is in the wrong format</td>
   </tr>
   <tr>
     <td>1008</td>
     <td>requestorName</td>
+    <td>Request advice</td>
     <td>Mandatory field requestorName was missing from body or is in the wrong format</td>
   </tr>
   <tr>
     <td>1009</td>
     <td>requestorEmail</td>
+    <td>Request advice</td>
     <td>Mandatory field requestorEmail was missing from body or is in the wrong format</td>
   </tr>
 </table>
