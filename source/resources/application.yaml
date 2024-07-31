@@ -166,7 +166,6 @@ components:
       - comcode
       - product_description
       - country_of_origin
-      - category
       - commcode_effective_from_date
       properties:
         trader_eori:
