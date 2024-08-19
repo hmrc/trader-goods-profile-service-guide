@@ -221,6 +221,49 @@ To update the information, you should provide the current value for UKIMS, NIRMS
 
 If a trader does not have NIRMS or NIPHL, you should leave this information blank.
 
+## Changes to TGP Record
+
+HMRC may make changes to records when commodity codes expire or restrictions on goods are changed in the Northern Ireland Online Tariff. Additionally, HMRC may have reviewed historical declaration data and marked that a record should be amended by the trader. These changes may be unclear to traders. This can change the status of their record and the 'toReview' value will be set to true.
+
+### 'toReview'
+
+HMRC will flag the records that need updating. There are 5 different reviewReasons that can be flagged to the trader.
+
+<table>
+  <thead>
+    <tr>
+      <th>reviewReason</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>The commodity code has expired. You&apos;ll need to change the commodity code and categorise the goods</th>
+      <td>The trader must update the commodity code to remove the toReview flag on the record. The trader will also need to categorise the record to see if it is ready for IMMI.</td>
+    </tr>
+    <tr>
+      <th>The commodity code or restrictions have changed. You&apos;ll need to categorise the record.</th>
+      <td>The trader must categorise the record to remove the toReview flag on the record.</td>
+    </tr>
+    <tr>
+      <th>HMRC have reviewed this record. The commodity code and goods description do not match. If you want to use this record on an IMMI, you&apos;ll need to amend the commodity code and the goods description.</th>
+      <td>The trader must update the goods description and/or the commodity code to remove the toReview flag on the record.</td>
+    </tr>
+    <tr>
+      <th>HMRC have reviewed this record. The goods description does not have enough detail. If you want to use this record on an IMMI, you&apos;ll need to amend the goods description.</th>
+      <td>The trader must update the goods description to remove the toReview flag on the record.</td>
+    </tr>
+    <tr>
+      <th>HMRC have reviewed the record. The goods description is unclear. If you want to use this record on an IMMI, you&apos;ll need to amend the goods description.</th>
+      <td>The trader must update the goods description to remove the toReview flag on the record.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Declarable
+
+The 'declarable' status of a record can change when HMRC expire a commodity code or change the categorisation exclusions. Records with the declarable values 'IMMI ready' and 'Not ready for IMMI' can become 'Not ready for use'.
+
 [CREATE_TGP_RECORD]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page#tag/Goods-records/operation/createTraderGoodsProfileRecord>
 [COMMODITIES_API]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html>
 [UNIT_COMPONENTS]: <https://api.trade-tariff.service.gov.uk/the-commodities-api.html#units-and-measure-components>
