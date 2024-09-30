@@ -95,9 +95,11 @@ You need the record ID to be able to search for a single record.
 
 ## Update TGP record
 
-The ‘Update TGP records’ endpoint allows users of your software to update their existing goods records.
-
-When a trader updates a piece of information, your software will only need to provide the values you wish to update. The trader does not need to send all the record information to update their record. We will check all the fields that the trader has sent are in the correct format on an update and change the record.
+We have two methods of updating a record, both use the same URL but they differ in the method verb:
+####PATCH
+This allows you to only provide the values you are updating . For example, if you wish to only update the traderRef you only need to provide this.
+####PUT
+This requires you to provide the full record with all values you wish to be set. Any optional missing values will be removed from the record. For example, if you wish to remove the supplementaryUnit, do not supply it we will remove it. You must supply all mandatory fields with this method.
 
 ### Locked state
 
