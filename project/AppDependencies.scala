@@ -1,8 +1,8 @@
-import play.sbt.PlayImport._
-import sbt._
+import play.sbt.PlayImport.*
+import sbt.*
 
 object AppDependencies {
-  val bootStrapPlayVersion = "8.5.0"
+  val bootStrapPlayVersion = "9.5.0"
 
   val compile: Seq[ModuleID] = Seq(
     ws,
@@ -11,5 +11,5 @@ object AppDependencies {
   val test: Seq[ModuleID] = Seq(
     "uk.gov.hmrc"   %% "bootstrap-test-play-30"     % bootStrapPlayVersion % "test",
     "org.pegdown"   %  "pegdown"                    % "1.6.0"              % "test",
-    "org.scalatest" %% "scalatest"                  % "3.0.8"              % "test")
+    "org.scalatest" %% "scalatest"                  % "3.2.19"              % "test")
 }
