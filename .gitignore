@@ -22,3 +22,5 @@ yarn-debug.log
 yarn-error.log
 /build
 
+project/.bloop/trader-goods-profile-service-guide-build.json
+.bsp/sbt.json
