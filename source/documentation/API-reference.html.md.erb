@@ -130,6 +130,30 @@ POST https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}/adv
 }
 ```
 
+### Withdraw Advice Stub
+
+Replace `{eori}` and `{recordId}` in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.
+
+```
+PUT https://<host>/customs/traders/goods-profiles/{eori}/records/{recordId}/advice
+```
+
+| Record Id to provide                 | Expected behaviour                 | Status code |
+|--------------------------------------|------------------------------------|-------------|
+| c5e0cb9f-2292-480b-8a43-4222db5c9c85 | The decision has already been made | 400         |
+| f2956479-7a7d-4bdc-95e9-0eb0c798335d | No case found                      | 400         |
+| Any other UUID                       | Advice Request Withdrawn           | 204         |
+
+#### Example request
+
+```json
+{
+  "actorId": "GB987654321098",
+  "requestorName": "Mr. Phil Edwards",
+  "requestorEmail": "Phil.Edwards@gmail.com"
+}
+```
+
 [USER_AUTH]: </api-documentation/docs/authorisation/user-restricted-endpoints>
 [AUTHORISATION]: </api-documentation/docs/authorisation>
 [API_SPEC]: </api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page>
