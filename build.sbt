@@ -3,7 +3,7 @@ import sbt.Keys._
 
 val appName = "trader-goods-profile-service-guide"
 
-scalaVersion := "2.13.12"
+scalaVersion := "3.3.4"
 
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 ThisBuild / semanticdbEnabled := true
