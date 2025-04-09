@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>API reference - Trader Goods Profile Service</title>
+
+    <link href="/guides/trader-goods-profile-service-guide/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="developer.service.hmrc.gov.uk/guides/trader-goods-profile-service-guide/documentation/API-reference.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:image" content="developer.service.hmrc.gov.uk/assets/govuk/assets/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="API reference - Trader Goods Profile Service" />
+      <meta name="twitter:url" content="developer.service.hmrc.gov.uk/guides/trader-goods-profile-service-guide/documentation/API-reference.html" />
+
+      <meta property="og:image" content="developer.service.hmrc.gov.uk/assets/govuk/assets/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="Trader Goods Profile Service" />
+      <meta property="og:title" content="API reference" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="developer.service.hmrc.gov.uk/guides/trader-goods-profile-service-guide/documentation/API-reference.html" />
+
+    <!--[if !IE]>-->
+<script
+src="/tracking-consent/tracking.js"
+id="tracking-consent-script-tag"
+data-gtm-container="b"
+data-language="en"></script>
+<!--<![endif]-->
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/guides/trader-goods-profile-service-guide/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          class="govuk-header__logotype"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 148 30"
+          height="30"
+          width="148"
+          aria-label="GOV.UK"
+        >
+          <title>GOV.UK</title>
+          <path d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m10.8-3.7c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s0 2-1 2.4m3.3 4.8c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4M17 4.7l2.3 1.2V2.5l-2.3.7-.2-.2.9-3h-3.4l.9 3-.2.2c-.1.1-2.3-.7-2.3-.7v3.4L15 4.7c.1.1.1.2.2.2l-1.3 4c-.1.2-.1.4-.1.6 0 1.1.8 2 1.9 2.2h.7c1-.2 1.9-1.1 1.9-2.1 0-.2 0-.4-.1-.6l-1.3-4c-.1-.2 0-.2.1-.3m-7.6 5.7c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m-5 3c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s.1 2 1 2.4m-3.2 4.8c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m14.8 11c4.4 0 8.6.3 12.3.8 1.1-4.5 2.4-7 3.7-8.8l-2.5-.9c.2 1.3.3 1.9 0 2.7-.4-.4-.8-1.1-1.1-2.3l-1.2 4c.7-.5 1.3-.8 2-.9-1.1 2.5-2.6 3.1-3.5 3-1.1-.2-1.7-1.2-1.5-2.1.3-1.2 1.5-1.5 2.1-.1 1.1-2.3-.8-3-2-2.3 1.9-1.9 2.1-3.5.6-5.6-2.1 1.6-2.1 3.2-1.2 5.5-1.2-1.4-3.2-.6-2.5 1.6.9-1.4 2.1-.5 1.9.8-.2 1.1-1.7 2.1-3.5 1.9-2.7-.2-2.9-2.1-2.9-3.6.7-.1 1.9.5 2.9 1.9l.4-4.3c-1.1 1.1-2.1 1.4-3.2 1.4.4-1.2 2.1-3 2.1-3h-5.4s1.7 1.9 2.1 3c-1.1 0-2.1-.2-3.2-1.4l.4 4.3c1-1.4 2.2-2 2.9-1.9-.1 1.5-.2 3.4-2.9 3.6-1.9.2-3.4-.8-3.5-1.9-.2-1.3 1-2.2 1.9-.8.7-2.3-1.2-3-2.5-1.6.9-2.2.9-3.9-1.2-5.5-1.5 2-1.3 3.7.6 5.6-1.2-.7-3.1 0-2 2.3.6-1.4 1.8-1.1 2.1.1.2.9-.3 1.9-1.5 2.1-.9.2-2.4-.5-3.5-3 .6 0 1.2.3 2 .9l-1.2-4c-.3 1.1-.7 1.9-1.1 2.3-.3-.8-.2-1.4 0-2.7l-2.9.9C1.3 23 2.6 25.5 3.7 30c3.7-.5 7.9-.8 12.3-.8m28.3-11.6c0 .9.1 1.7.3 2.5.2.8.6 1.5 1 2.2.5.6 1 1.1 1.7 1.5.7.4 1.5.6 2.5.6.9 0 1.7-.1 2.3-.4s1.1-.7 1.5-1.1c.4-.4.6-.9.8-1.5.1-.5.2-1 .2-1.5v-.2h-5.3v-3.2h9.4V28H55v-2.5c-.3.4-.6.8-1 1.1-.4.3-.8.6-1.3.9-.5.2-1 .4-1.6.6s-1.2.2-1.8.2c-1.5 0-2.9-.3-4-.8-1.2-.6-2.2-1.3-3-2.3-.8-1-1.4-2.1-1.8-3.4-.3-1.4-.5-2.8-.5-4.3s.2-2.9.7-4.2c.5-1.3 1.1-2.4 2-3.4.9-1 1.9-1.7 3.1-2.3 1.2-.6 2.6-.8 4.1-.8 1 0 1.9.1 2.8.3.9.2 1.7.6 2.4 1s1.4.9 1.9 1.5c.6.6 1 1.3 1.4 2l-3.7 2.1c-.2-.4-.5-.9-.8-1.2-.3-.4-.6-.7-1-1-.4-.3-.8-.5-1.3-.7-.5-.2-1.1-.2-1.7-.2-1 0-1.8.2-2.5.6-.7.4-1.3.9-1.7 1.5-.5.6-.8 1.4-1 2.2-.3.8-.4 1.9-.4 2.7zM71.5 6.8c1.5 0 2.9.3 4.2.8 1.2.6 2.3 1.3 3.1 2.3.9 1 1.5 2.1 2 3.4s.7 2.7.7 4.2-.2 2.9-.7 4.2c-.4 1.3-1.1 2.4-2 3.4-.9 1-1.9 1.7-3.1 2.3-1.2.6-2.6.8-4.2.8s-2.9-.3-4.2-.8c-1.2-.6-2.3-1.3-3.1-2.3-.9-1-1.5-2.1-2-3.4-.4-1.3-.7-2.7-.7-4.2s.2-2.9.7-4.2c.4-1.3 1.1-2.4 2-3.4.9-1 1.9-1.7 3.1-2.3 1.2-.5 2.6-.8 4.2-.8zm0 17.6c.9 0 1.7-.2 2.4-.5s1.3-.8 1.7-1.4c.5-.6.8-1.3 1.1-2.2.2-.8.4-1.7.4-2.7v-.1c0-1-.1-1.9-.4-2.7-.2-.8-.6-1.6-1.1-2.2-.5-.6-1.1-1.1-1.7-1.4-.7-.3-1.5-.5-2.4-.5s-1.7.2-2.4.5-1.3.8-1.7 1.4c-.5.6-.8 1.3-1.1 2.2-.2.8-.4 1.7-.4 2.7v.1c0 1 .1 1.9.4 2.7.2.8.6 1.6 1.1 2.2.5.6 1.1 1.1 1.7 1.4.6.3 1.4.5 2.4.5zM88.9 28 83 7h4.7l4 15.7h.1l4-15.7h4.7l-5.9 21h-5.7zm28.8-3.6c.6 0 1.2-.1 1.7-.3.5-.2 1-.4 1.4-.8.4-.4.7-.8.9-1.4.2-.6.3-1.2.3-2v-13h4.1v13.6c0 1.2-.2 2.2-.6 3.1s-1 1.7-1.8 2.4c-.7.7-1.6 1.2-2.7 1.5-1 .4-2.2.5-3.4.5-1.2 0-2.4-.2-3.4-.5-1-.4-1.9-.9-2.7-1.5-.8-.7-1.3-1.5-1.8-2.4-.4-.9-.6-2-.6-3.1V6.9h4.2v13c0 .8.1 1.4.3 2 .2.6.5 1 .9 1.4.4.4.8.6 1.4.8.6.2 1.1.3 1.8.3zm13-17.4h4.2v9.1l7.4-9.1h5.2l-7.2 8.4L148 28h-4.9l-5.5-9.4-2.7 3V28h-4.2V7zm-27.6 16.1c-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7-1.2-2.7-2.7-2.7z"></path>
+        </svg>
+        <span class="govuk-header__product-name">
+          Trader Goods Profile Service
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://developer.service.hmrc.gov.uk">Developer Hub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub">Documentation</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://developer.service.hmrc.gov.uk/developer/applications">Applications</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://developer.service.hmrc.gov.uk/developer/support">Support</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents">
+              
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading" data-module="collapsible-navigation">
+                      <ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/"><span>Trader Goods Profile (TGP) Service API overview</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/#tgp-api-overview"><span>TGP API overview</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/before-you-start.html"><span>Before you start</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/before-you-start.html#requirements-to-use-tgp"><span>Requirements to use TGP</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/before-you-start.html#authority-for-your-software-to-act-on-behalf-of-your-users"><span>Authority for your software to act on behalf of your users</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/get-started.html"><span>Getting started</span></a>
+    <ul>
+      <li>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/get-started.html#getting-started-before-you-start"><span>Before you start</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html"><span>User journeys</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#create-tgp-record"><span>Create TGP record</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#get-tgp-records"><span>Get TGP records</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#update-tgp-record"><span>Update TGP record</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#remove-tgp-record"><span>Remove TGP record</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#request-advice"><span>Request advice</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#withdraw-advice-request"><span>Withdraw advice request</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#maintain-profile"><span>Maintain profile</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#changes-to-tgp-record"><span>Changes to TGP Record</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html"><span>API reference</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#authentication-and-authorisation"><span>Authentication and Authorisation</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#authorisation-flow-diagram"><span>Authorisation flow diagram</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#testing-your-trader-goods-profile-integration"><span>Testing your Trader Goods Profile integration</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#trader-goods-profile-stubs"><span>Trader Goods Profile stubs</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/errors.html"><span>Errors</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/errors.html#sample-error-structures"><span>Sample error structures</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/errors.html#list-of-possible-400-bad-request-error-codes"><span>List of possible 400 Bad Request error codes</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="api-reference">API reference</h1>
+
+
+<div class="govuk-inset-text">
+This API is in Beta and may have breaking changes.
+</div>
+<p>This section details the APIs exposed in TGP and their specification.</p>
+<h2 id="authentication-and-authorisation">Authentication and Authorisation</h2>
+
+<p>Learn about the user-restricted <a href="/api-documentation/docs/authorisation/user-restricted-endpoints" rel="noopener noreferrer">authentication</a> used by the API.</p>
+<p>HMRC supports OAuth 2.0 for authenticating user restricted API requests using an OAuth 2.0 Bearer Token in the AUTHORIZATION header. Find out more about <a href="/api-documentation/docs/authorisation" rel="noopener noreferrer">Authorisation</a>.</p>
+<p>Flow type: authorizationCode</p>
+<p>Authorization URL: <a href="https://api.service.hmrc.gov.uk/oauth/authorize" rel="noopener noreferrer">https://api.service.hmrc.gov.uk/oauth/authorize</a></p>
+<p>Token URL: <a href="https://api.service.hmrc.gov.uk/oauth/token" rel="noopener noreferrer">https://api.service.hmrc.gov.uk/oauth/token</a></p>
+<p>Refresh URL: <a href="https://api.service.hmrc.gov.uk/oauth/refresh" rel="noopener noreferrer">https://api.service.hmrc.gov.uk/oauth/refresh</a></p>
+<p>Required scopes: trader-goods-profiles</p>
+<p>Learn more about the <a href="/api-documentation/docs/api/service/trader-goods-profiles/1.0/oas/page" rel="noopener noreferrer">Trader Goods Profile API endpoints</a>.</p>
+<h2 id="authorisation-flow-diagram">Authorisation flow diagram</h2>
+
+<p><a href="../images/TGP_Authorisation_and_Access_Flow.png" target="blank"><img src="../images/TGP_Authorisation_and_Access_Flow.png" alt="TGP Authorisation and Access Flow" style="width:720px;" /></a></p>
+<p>This explains the steps shown in the above diagram on the access flow for Trader Goods Profile API. The diagram illustrates how a trader would authorise the application. Then how intermediaries can access the TGP API without receiving the access token.</p>
+
+<ol>
+<li>The trader authorises the application and picks their intermediary or agent</li>
+<li>The application requests an access token from the authorisation server</li>
+<li>The authorisation server issues the access token to the application</li>
+<li>The application grants access to TGP to the intermediary or agent</li>
+<li>The intermediary or agent requests access to TGP via the application</li>
+<li>The application uses the access token on the intermediary or agent’s behalf to access the TGP API</li>
+</ol>
+<p>The Intermediary or agent does not receive the access token directly. The application uses it on their behalf.</p>
+<h2 id="testing-your-trader-goods-profile-integration">Testing your Trader Goods Profile integration</h2>
+
+<h3 id="using-the-trader-goods-profile-sandbox-environment">Using the Trader Goods Profile sandbox environment</h3>
+
+<p>The TGP sandbox provides a mix of dynamic and static behaviour, along with an Admin API. This combination of test endpoints allows you to test the creation and subsequent updates to goods records over the course of trader’s use of TGP.</p>
+<h3 id="dynamic-endpoints">Dynamic endpoints</h3>
+
+<p>The TGP sandbox contains a test data store allowing you to create and manipulate data as part of the user journey. The following endpoints support dynamic behaviour:</p>
+
+<ul>
+<li>Create a TGP goods record</li>
+<li>Update a TGP goods record</li>
+<li>Get TGP goods records</li>
+<li>Get a single TGP goods record</li>
+<li>Remove a TGP goods record</li>
+<li>Maintain TGP profile</li>
+</ul>
+<p>Records created and updated within the data store will persist for one year.</p>
+<p>Schema validation is applied to the endpoints in the same way as the production endpoints, so attempting to create or update a record with invalid data will result in an error being returned.</p>
+<h3 id="creating-a-new-tgp-for-test-users-in-the-dynamic-sandbox">Creating a new TGP for test users in the dynamic sandbox</h3>
+
+<p>In the sandbox environment only, the Maintain TGP Profile endpoint can be used to create new TGPs for test users you’ve set up in the <a href="/api-test-user" rel="noopener noreferrer">Developer Hub</a>.</p>
+<p>To create a new TGP, you’ll need to use the test user’s EORI number as the eori in the request as well as the actorId. You’ll also need to provide a number matching the required format for a UKIMS number to create the profile. Optionally you can also provide dummy data in the correct format for NIRMS or NIPHL numbers.</p>
+<p>Once created, you’ll be able to create and manipulate data for this test user’s EORI within the dynamic sandbox.</p>
+<p><em>Note: the Maintain TGP Profile can not be used to create new profiles in the production environment.</em></p>
+<h3 id="static-endpoints">Static endpoints</h3>
+
+<p>The following endpoints do not provide dynamic behaviour:</p>
+
+<ul>
+<li>Request advice</li>
+</ul>
+<p>When testing the functionality for these endpoints you should refer to <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#trader-goods-profile-stubs" rel="noopener noreferrer">Trader Goods Profile stubs</a> for details of test data.</p>
+<h3 id="admin-api">Admin API</h3>
+
+<p><em>Note: The TGP Admin API exists purely within the sandbox environment and does not exist in the production environment.</em></p>
+<p>The Admin API allows you to update data values which are not typically possible from the client side. This is because they are applied by the HMRC systems in response to specific triggers or business rules.</p>
+
+<ul>
+<li><p>Commodity code has expired in Trade Tariff</p>
+
+<ul>
+<li>a goods record should have the toReview value updated to true with a reviewReason of “The commodity code has expired. You’ll need to change the commodity code and categorise the goods.”</li>
+</ul></li>
+<li><p>Measures have changed in Trade Tariff</p>
+
+<ul>
+<li>the goods record should have the toReview value updated to true with a reviewReason of “The restrictions have changed or there may be new restrictions. You need to categorise the record.”</li>
+</ul></li>
+<li><p>Record is locked due to an open advice request</p>
+
+<ul>
+<li>the goods record should have the adviceStatus value updated to “Requested”, “In progress” or “Information Requested” and the locked value should be true.</li>
+</ul></li>
+<li><p>Record has a different declarable state</p>
+
+<ul>
+<li>the goods record should have the declarable value updated to “Ready for IMMI Ready”, “Not Ready For IMMI” or “Not Ready For Use”.</li>
+</ul></li>
+</ul>
+<p>Refer to the <a href="/api-documentation/docs/api/service/trader-goods-profiles-test-support/1.0/oas/page" rel="noopener noreferrer">Admin API endpoint</a> specification for more information.</p>
+<h2 id="trader-goods-profile-stubs">Trader Goods Profile stubs</h2>
+
+<h3 id="request-advice-stub">Request Advice Stub</h3>
+
+<p>Replace <code>{eori}</code> and <code>{recordId}</code> in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>POST https://&lt;host&gt;/customs/traders/goods-profiles/{eori}/records/{recordId}/advice
+</code></pre></div><div class="table-container">
+        <table>
+          <tr>
+<th>EORI to provide</th>
+<th>Expected behaviour</th>
+<th>Status code</th>
+</tr><tr>
+<td>GB123456789011</td>
+<td>Advice request is created</td>
+<td>201</td>
+</tr><tr>
+<td>GB123456789012</td>
+<td>JSON payload is invalid</td>
+<td>400</td>
+</tr>
+        </table>
+      </div><h4 id="example-request">Example request</h4>
+
+<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"actorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB987654321098"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"requestorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr. Phil Edwards"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"requestorEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phil.Edwards@gmail.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id="withdraw-advice-stub">Withdraw Advice Stub</h3>
+
+<p>Replace <code>{eori}</code> and <code>{recordId}</code> in the URL with the values specified in the table below to simulate different scenarios and receive the corresponding responses.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>PUT https://&lt;host&gt;/customs/traders/goods-profiles/{eori}/records/{recordId}/advice
+</code></pre></div><div class="table-container">
+        <table>
+          <tr>
+<th>Record Id to provide</th>
+<th>Expected behaviour</th>
+<th>Status code</th>
+</tr><tr>
+<td>c5e0cb9f-2292-480b-8a43-4222db5c9c85</td>
+<td>The decision has already been made</td>
+<td>400</td>
+</tr><tr>
+<td>f2956479-7a7d-4bdc-95e9-0eb0c798335d</td>
+<td>No case found</td>
+<td>400</td>
+</tr><tr>
+<td>Any other UUID</td>
+<td>Advice Request Withdrawn</td>
+<td>204</td>
+</tr>
+        </table>
+      </div><h4 id="withdraw-advice-stub-example-request">Example request</h4>
+
+<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"withdrawReason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No longer needed"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="https://www.tax.service.gov.uk/accessibility-statement/hmrc-developer-hub">Accessibility statement</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+      <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43414424-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('set', 'displayFeaturesTask', null);
+  ga('set', 'transport', 'beacon');
+  ga('set', 'page', location.pathname+location.search+location.hash);
+  ga('send', 'pageview');
+  </script>
+
+    <script src="/guides/trader-goods-profile-service-guide/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/guides/trader-goods-profile-service-guide/javascripts/application.js"></script>
+  </body>
+</html>
