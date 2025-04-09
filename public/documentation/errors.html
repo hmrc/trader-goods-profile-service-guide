@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Errors - Trader Goods Profile Service</title>
+
+    <link href="/guides/trader-goods-profile-service-guide/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="developer.service.hmrc.gov.uk/guides/trader-goods-profile-service-guide/documentation/errors.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:image" content="developer.service.hmrc.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Errors - Trader Goods Profile Service" />
+      <meta name="twitter:url" content="developer.service.hmrc.gov.uk/guides/trader-goods-profile-service-guide/documentation/errors.html" />
+
+      <meta property="og:image" content="developer.service.hmrc.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="Trader Goods Profile Service" />
+      <meta property="og:title" content="Errors" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="developer.service.hmrc.gov.uk/guides/trader-goods-profile-service-guide/documentation/errors.html" />
+
+    <!--[if !IE]>-->
+<script
+src="/tracking-consent/tracking.js"
+id="tracking-consent-script-tag"
+data-gtm-container="b"
+data-language="en"></script>
+<!--<![endif]-->
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/guides/trader-goods-profile-service-guide/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Trader Goods Profile Service
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://developer.service.hmrc.gov.uk">Developer Hub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub">Documentation</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://developer.service.hmrc.gov.uk/developer/applications">Applications</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://developer.service.hmrc.gov.uk/developer/support">Support</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading" data-module="collapsible-navigation">
+                      <ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/"><span>Trader Goods Profile (TGP) Service API overview</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/#tgp-api-overview"><span>TGP API overview</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/before-you-start.html"><span>Before you start</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/before-you-start.html#requirements-to-use-tgp"><span>Requirements to use TGP</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/before-you-start.html#authority-for-your-software-to-act-on-behalf-of-your-users"><span>Authority for your software to act on behalf of your users</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/get-started.html"><span>Getting started</span></a>
+    <ul>
+      <li>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/get-started.html#getting-started-before-you-start"><span>Before you start</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html"><span>User journeys</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#create-tgp-record"><span>Create TGP record</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#get-tgp-records"><span>Get TGP records</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#update-tgp-record"><span>Update TGP record</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#remove-tgp-record"><span>Remove TGP record</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#request-advice"><span>Request advice</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#withdraw-advice-request"><span>Withdraw advice request</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#maintain-profile"><span>Maintain profile</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/user-journeys.html#changes-to-tgp-record"><span>Changes to TGP Record</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html"><span>API reference</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#authentication-and-authorisation"><span>Authentication and Authorisation</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#authorisation-flow-diagram"><span>Authorisation flow diagram</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#testing-your-trader-goods-profile-integration"><span>Testing your Trader Goods Profile integration</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/API-reference.html#trader-goods-profile-stubs"><span>Trader Goods Profile stubs</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="/guides/trader-goods-profile-service-guide/documentation/errors.html"><span>Errors</span></a>
+    <ul>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/errors.html#sample-error-structures"><span>Sample error structures</span></a>
+      </li>
+      <li>
+        <a href="/guides/trader-goods-profile-service-guide/documentation/errors.html#list-of-possible-400-bad-request-error-codes"><span>List of possible 400 Bad Request error codes</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="errors">Errors</h1>
+
+
+<div class="govuk-inset-text">
+This API is in Beta and may have breaking changes.
+</div>
+<p>TGP APIs use standard HTTP status codes to show whether an API request succeeded or not.</p>
+<p>They are usually in the range:</p>
+
+<table>
+  <tr>
+    <th>SL &num;</th>
+    <th>Range</th>
+    <th>Scenario</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>200 to 299</td>
+    <td>Request succeeded, including code 202 if it was accepted by an API that needs to wait for further action</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>400 to 499</td>
+    <td> Request failed because of a client error by your application</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>500 to 599</td>
+    <td>Request failed because of an error on our server</td>
+   </tr>
+</table>
+<p>Errors specific to each API are shown in the Endpoints section, under Response. See our <a href="/api-documentation/docs/reference-guide#errors" rel="noopener noreferrer">reference guide</a>
+for more on errors.</p>
+<h2 id="sample-error-structures">Sample error structures</h2>
+
+<p>All errors from TGP Digital will return a JSON map with two keys: &ldquo;code&rdquo; and &ldquo;message&rdquo;.</p>
+<h3 id="example-error-response">Example error response</h3>
+
+<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"correlationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e8dae97-b586-4cef-8511-68ac12da9028"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAD_REQUEST"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad request"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_REQUEST_PARAMETER"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"traderRef is not unique for all the provided trader's goods records"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"errorNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id="example-error-response-with-multiple-errors">Example error response with multiple errors</h3>
+
+<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"correlationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e8dae97-b586-4cef-8511-68ac12da9028"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAD_REQUEST"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad request"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_REQUEST_PARAMETER"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"traderRef is not unique for all the provided trader's goods records"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"errorNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_REQUEST_PARAMETER"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mandatory field goodsDescription was missing from body or is in the wrong format"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"errorNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id="list-of-possible-400-bad-request-error-codes">List of possible 400 Bad Request error codes</h2>
+
+
+<table>
+  <tr>
+    <th>Error Number</th>
+    <th>Field Name</th>
+    <th>Endpoints</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>N/A</td>
+    <td>All endpoints</td>
+    <td>JSON body doesn’t match the schema</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>X-Correlation-ID</td>
+    <td>All endpoints</td>
+    <td>X-Correlation-ID was missing from Header or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Date</td>
+    <td>All endpoints</td>
+    <td>Date was missing from Header or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Content-Type</td>
+    <td>All endpoints</td>
+    <td>Content-Type was missing from Header or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Accept</td>
+    <td>All endpoints</td>
+    <td>Accept was missing from Header or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>X-Forwarded-Host</td>
+    <td>All endpoints</td>
+    <td>X-Forwarded-Host was missing from Header or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>eori</td>
+    <td>All endpoints</td>
+    <td>Mandatory field eori was missing from body or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>eori</td>
+    <td>All endpoints</td>
+    <td>EORI number does not have a TGP</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>actorId</td>
+    <td>Create TGP record, Update TGP record, Remove TGP record</td>
+    <td>Mandatory field actorId was missing from body or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>traderRef</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Mandatory field traderRef was missing from body or is in the wrong format. The HMRC TGP service calls the &lsquo;traderRef&rsquo; a &lsquo;product reference&rsquo;.</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>traderRef</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Trying to create or update a record with a duplicate traderRef. The HMRC TGP service calls the &lsquo;traderRef&rsquo; a &lsquo;product reference&rsquo;.</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td>comcode</td>
+    <td>Create TGP record</td>
+    <td>Mandatory field comcode was missing from body or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>goodsDescription</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Mandatory field goodsDescription was missing from body or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>countryOfOrigin</td>
+    <td>Create TGP record, Update TGP record, Remove TGP record</td>
+    <td>Mandatory field countryOfOrigin was missing from body or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>category</td>
+    <td>Create TGP record, Update TGP record, Remove TGP record</td>
+    <td>Optional field category is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>assessments[].assessmentId</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field assessmentId is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>assessments[].primaryCategory</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field primaryCategory is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>assessments[].primaryCategory.condition.type</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field type is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>assessments[].primaryCategory.condition.conditionId</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field conditionId is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td>assessments[].primaryCategory.condition.conditionDescription</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field conditionDescription is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>assessments[].primaryCategory.condition.conditionTraderText</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field conditionTraderText is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td>supplementaryUnit</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field supplementaryUnit is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>22</td>
+    <td>measurementUnit</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field measurementUnit is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>23</td>
+    <td>comcodeEffectiveFromDate</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Mandatory field comcodeEffectiveFromDate was missing from body or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>24</td>
+    <td>comcodeEffectiveToDate</td>
+    <td>Create TGP record, Update TGP record</td>
+    <td>Optional field comcodeEffectiveToDate is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td>recordId</td>
+    <td>Update TGP record, Get TGP record, Remove TGP record</td>
+    <td>The recordId has been provided in the wrong format</td>
+  </tr>
+  <tr>
+    <td>26</td>
+    <td>recordId</td>
+    <td>Update TGP record, Get TGP record, Remove TGP record</td>
+    <td>The requested recordId to update doesn’t exist</td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td>adviceStatus</td>
+    <td>Update TGP record, Remove TGP record</td>
+    <td>There is an ongoing advice request and the record can not be updated</td>
+  </tr>
+  <tr>
+    <td>28</td>
+    <td>lastUpdatedDate</td>
+    <td>Get TGP record, Update TGP record</td>
+    <td>The URL parameter lastUpdatedDate is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>29</td>
+    <td>page</td>
+    <td>Get TGP record</td>
+    <td>The URL parameter page is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>30</td>
+    <td>size</td>
+    <td>Get TGP record</td>
+    <td>The URL parameter size is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>31</td>
+    <td>active</td>
+    <td>Update TGP record, Remove TGP record</td>
+    <td>This record has been removed and cannot be updated</td>
+  </tr>
+  <tr>
+    <td>33</td>
+    <td>ukimsNumber</td>
+    <td>Request advice</td>
+    <td>Mandatory field ukimsNumber was missing from body or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>34</td>
+    <td>nirmsNumber</td>
+    <td>Maintain Profile</td>
+    <td>Optional field nirmsNumber is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>35</td>
+    <td>niphlNumber</td>
+    <td>Maintain Profile</td>
+    <td>Optional field niphlNumber is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>101</td>
+    <td>N/A</td>
+    <td>All endpoints</td>
+    <td>The user has not enrolled to CDS with these credentials.</td>
+  </tr>
+  <tr>
+    <td>102</td>
+    <td>N/A</td>
+    <td>All endpoints</td>
+    <td>User has been authenticated and has a CDS enrolment however they are not of type &ldquo;Individual&rdquo; or &ldquo;organisation&rdquo;</td>
+  </tr>
+  <tr>
+    <td>103</td>
+    <td>N/A</td>
+    <td>All endpoints</td>
+    <td>The CDS enrolment does not have access to the EORI they are trying to access.</td>
+  </tr>
+  <tr>
+    <td>1008</td>
+    <td>requestorName</td>
+    <td>Request advice</td>
+    <td>Mandatory field requestorName was missing from body or is in the wrong format</td>
+  </tr>
+  <tr>
+    <td>1009</td>
+    <td>requestorEmail</td>
+    <td>Request advice</td>
+    <td>Mandatory field requestorEmail was missing from body or is in the wrong format</td>
+  </tr>
+</table>
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="https://www.tax.service.gov.uk/accessibility-statement/hmrc-developer-hub">Accessibility statement</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+      <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43414424-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('set', 'displayFeaturesTask', null);
+  ga('set', 'transport', 'beacon');
+  ga('set', 'page', location.pathname+location.search+location.hash);
+  ga('send', 'pageview');
+  </script>
+
+    <script src="/guides/trader-goods-profile-service-guide/javascripts/application.js"></script>
+  </body>
+</html>
