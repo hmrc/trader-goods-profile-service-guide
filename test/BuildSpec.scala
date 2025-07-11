@@ -23,7 +23,7 @@ import scala.sys.process._
 class BuildSpec extends AnyWordSpecLike with Matchers {
   "Building the content" should {
     "produce static files" in {
-      val result = "bundle install" #&& Process("bundle exec middleman build --build-dir=public/ --clean", None) !
+      val result: Int = "bundle install" #&& Process("bundle exec middleman build --build-dir=public/ --clean", None) !
 
       result shouldBe 0
     }
