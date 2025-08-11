@@ -225,11 +225,12 @@ If a trader does not have NIRMS or NIPHL, you should leave this information blan
 
 ## Changes to TGP Record
 
-HMRC may make changes to records when commodity codes expire or restrictions on goods are changed in the Northern Ireland Online Tariff. Additionally, HMRC may have reviewed historical declaration data and marked that a record should be amended by the trader. These changes may be unclear to traders. This can change the status of their record and the 'toReview' value will be set to true.
+HMRC may make changes to records when commodity codes expire, country or origin changes or restrictions on goods are changed in the Northern Ireland Online Tariff. Additionally, HMRC may have reviewed historical declaration data and marked that a record should be changed by the trader.
 
+These changes may be unclear to traders. This can change the status of their record and the ‘toReview’ value will be set to true.
 ### 'toReview'
 
-HMRC will flag the records that need updating. There are 5 different reviewReasons that can be flagged to the trader.
+HMRC will flag the records that need updating. There are six different reviewReasons that can be flagged to the trader.
 
 <table>
   <thead>
@@ -246,6 +247,10 @@ HMRC will flag the records that need updating. There are 5 different reviewReaso
     <tr>
       <th>The commodity code or restrictions have changed. You&apos;ll need to categorise the record.</th>
       <td>The trader must categorise the record to remove the toReview flag on the record.</td>
+    </tr>
+    <tr>
+      <th>The country of origin is not valid. You&apos;ll need to change the country of origin and categorise the record.</th>
+      <td>The trader must update the country of origin to remove the toReview flag on the record.</td>
     </tr>
     <tr>
       <th>HMRC have reviewed this record. The commodity code and goods description do not match. If you want to use this record on an IMMI, you&apos;ll need to amend the commodity code and the goods description.</th>
